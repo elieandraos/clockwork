@@ -9,7 +9,12 @@ const string = function(value) {
     return typeof value === 'string';
 }
 
+const array = function(value) {
+    return Array.isArray(value);
+}
+
 module.exports = {
     required,
-    string
+    string,
+    array
 }

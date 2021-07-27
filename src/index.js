@@ -60,11 +60,11 @@ const not_in = function(value, arg = null) {
     return !is_in(value, arg);
 }
 
-const size = function(value, arg) {
+const size = function(value, arg = null) {
     return (!string(value) && !array(value)) ? false : value.length === arg;
 }
 
-const min = function (value, arg) {
+const min = function (value, arg = null) {
     if(!value && !array(value)) {
         return false;
     }
@@ -73,13 +73,17 @@ const min = function (value, arg) {
     return parseFloat(value) >= arg;
 }
 
-const max = function(value, arg) {
+const max = function(value, arg = null) {
     if(!value && !array(value)) {
         return false;
     }
 
     value = ( string(value) || array(value) ) ? value.length : value;
     return parseFloat(value) <= arg;
+}
+
+const same = function(value, arg = null) {
+    return (typeof value === 'object') ? JSON.stringify(value) === JSON.stringify(arg) : value === arg;
 }
 
 module.exports = {
@@ -98,5 +102,6 @@ module.exports = {
     not_in,
     size,
     min,
-    max
+    max,
+    same
 }

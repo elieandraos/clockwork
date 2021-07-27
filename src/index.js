@@ -45,12 +45,19 @@ const boolean = function(value) {
     return [true, false].includes(value);
 }
 
-const is_in = function(value, arg=null) {
+const is_in = function(value, arg = null) {
     if(!string(arg) && !array(arg))
         return false;
 
     arg = string(arg) ? arg.split(',') : arg;
     return arg.includes(value);
+}
+
+const not_in = function(value, arg = null) {
+    if(!string(arg) && !array(arg))
+        return false;
+    
+    return !is_in(value, arg);
 }
 
 module.exports = {
@@ -65,5 +72,6 @@ module.exports = {
     starts_with,
     ends_with,
     boolean,
-    is_in
+    is_in,
+    not_in
 }

@@ -13,8 +13,13 @@ const array = function(value) {
     return Array.isArray(value);
 }
 
+const integer = function(value) {
+    return Number.isInteger(value);
+}
+
 module.exports = {
     required,
     string,
-    array
+    array,
+    integer
 }

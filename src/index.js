@@ -21,10 +21,15 @@ const numeric = function(value) {
     return !Number.isNaN(parseFloat(value)) && isFinite(value);
 }
 
+const alpha = function(value) {
+    return string(value) ? new RegExp("^[A-Za-z]+$").test(value.toLowerCase()) : false;
+}
+
 module.exports = {
     required,
     string,
     array,
     integer,
-    numeric
+    numeric,
+    alpha
 }

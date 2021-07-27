@@ -17,9 +17,14 @@ const integer = function(value) {
     return Number.isInteger(value);
 }
 
+const numeric = function(value) {
+    return !Number.isNaN(parseFloat(value)) && isFinite(value);
+}
+
 module.exports = {
     required,
     string,
     array,
-    integer
+    integer,
+    numeric
 }

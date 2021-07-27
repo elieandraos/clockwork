@@ -33,6 +33,10 @@ const alpha_dash = function(value) {
     return string(value) && new RegExp("^[a-zA-Z-_]+$").test(value.toLowerCase());
 }
 
+const starts_with = function(value, arg = null) {
+    return string(value) && string(arg) && value.startsWith(arg);
+}
+
 module.exports = {
     required,
     string,
@@ -41,5 +45,6 @@ module.exports = {
     numeric,
     alpha,
     alpha_numeric,
-    alpha_dash
+    alpha_dash,
+    starts_with
 }

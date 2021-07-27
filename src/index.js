@@ -37,6 +37,10 @@ const starts_with = function(value, arg = null) {
     return string(value) && string(arg) && value.startsWith(arg);
 }
 
+const ends_with = function(value, arg = null) {
+    return string(value) && string(arg) && value.endsWith(arg);
+}
+
 module.exports = {
     required,
     string,
@@ -46,5 +50,6 @@ module.exports = {
     alpha,
     alpha_numeric,
     alpha_dash,
-    starts_with
+    starts_with,
+    ends_with
 }

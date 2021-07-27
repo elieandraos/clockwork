@@ -22,15 +22,15 @@ const numeric = function(value) {
 }
 
 const alpha = function(value) {
-    return string(value) ? new RegExp("^[A-Za-z]+$").test(value.toLowerCase()) : false;
+    return string(value) && new RegExp("^[A-Za-z]+$").test(value.toLowerCase());
 }
 
 const alpha_numeric = function(value) {
-    return string(value) ? new RegExp("^[a-zA-Z0-9\\s]+$").test(value.toLowerCase())  : false;
+    return string(value) && new RegExp("^[a-zA-Z0-9\\s]+$").test(value.toLowerCase());
 }
 
 const alpha_dash = function(value) {
-    return string(value) ? new RegExp("^[a-zA-Z-_]+$").test(value.toLowerCase()) : false;
+    return string(value) && new RegExp("^[a-zA-Z-_]+$").test(value.toLowerCase());
 }
 
 module.exports = {

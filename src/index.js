@@ -99,6 +99,13 @@ const email = function(value) {
     return new RegExp("^\\S+@\\S+[\\.][0-9a-z]+$").test(String(value).toLowerCase());
 }
 
+const uuid = function(value) {
+    if(!string(value))
+        return false;
+
+    return new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$").test(String(value).toLowerCase());
+}
+
 module.exports = {
     required,
     string,
@@ -119,5 +126,6 @@ module.exports = {
     same,
     different,
     url,
-    email
+    email,
+    uuid
 }

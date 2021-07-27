@@ -95,6 +95,10 @@ const url = function(value) {
     ).test(String(value).toLowerCase());
 }
 
+const email = function(value) {
+    return new RegExp("^\\S+@\\S+[\\.][0-9a-z]+$").test(String(value).toLowerCase());
+}
+
 module.exports = {
     required,
     string,
@@ -114,5 +118,6 @@ module.exports = {
     max,
     same,
     different,
-    url
+    url,
+    email
 }

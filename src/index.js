@@ -5,6 +5,11 @@ const required = function(value)  {
         return ![ null, undefined, '' ].includes(value);
 }
 
+const string = function(value) {
+    return typeof value === 'string';
+}
+
 module.exports = {
-    required
+    required,
+    string
 }

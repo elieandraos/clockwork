@@ -64,6 +64,15 @@ const size = function(value, arg) {
     return (!string(value) && !array(value)) ? false : value.length === arg;
 }
 
+const min = function (value, arg) {
+    if(!value && !array(value)) {
+        return false;
+    }
+
+    value = (string(value) || array(value)) ? value.length : value;
+    return parseFloat(value) >= arg;
+}
+
 module.exports = {
     required,
     string,
@@ -78,5 +87,6 @@ module.exports = {
     boolean,
     is_in,
     not_in,
-    size
+    size,
+    min
 }

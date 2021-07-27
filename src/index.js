@@ -45,6 +45,14 @@ const boolean = function(value) {
     return [true, false].includes(value);
 }
 
+const is_in = function(value, arg=null) {
+    if(!string(arg) && !array(arg))
+        return false;
+
+    arg = string(arg) ? arg.split(',') : arg;
+    return arg.includes(value);
+}
+
 module.exports = {
     required,
     string,
@@ -56,5 +64,6 @@ module.exports = {
     alpha_dash,
     starts_with,
     ends_with,
-    boolean
+    boolean,
+    is_in
 }

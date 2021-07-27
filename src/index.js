@@ -69,8 +69,17 @@ const min = function (value, arg) {
         return false;
     }
 
-    value = (string(value) || array(value)) ? value.length : value;
+    value = ( string(value) || array(value) ) ? value.length : value;
     return parseFloat(value) >= arg;
+}
+
+const max = function(value, arg) {
+    if(!value && !array(value)) {
+        return false;
+    }
+
+    value = ( string(value) || array(value) ) ? value.length : value;
+    return parseFloat(value) <= arg;
 }
 
 module.exports = {
@@ -88,5 +97,6 @@ module.exports = {
     is_in,
     not_in,
     size,
-    min
+    min,
+    max
 }

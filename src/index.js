@@ -56,8 +56,12 @@ const is_in = function(value, arg = null) {
 const not_in = function(value, arg = null) {
     if(!string(arg) && !array(arg))
         return false;
-    
+
     return !is_in(value, arg);
+}
+
+const size = function(value, arg) {
+    return (!string(value) && !array(value)) ? false : value.length === arg;
 }
 
 module.exports = {
@@ -73,5 +77,6 @@ module.exports = {
     ends_with,
     boolean,
     is_in,
-    not_in
+    not_in,
+    size
 }

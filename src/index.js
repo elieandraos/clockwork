@@ -85,6 +85,9 @@ const max = function(value, arg = null) {
 const same = function(value, arg = null) {
     return (typeof value === 'object') ? JSON.stringify(value) === JSON.stringify(arg) : value === arg;
 }
+const different = function(value, arg = null) {
+    return !same(value, arg);
+}
 
 module.exports = {
     required,
@@ -103,5 +106,6 @@ module.exports = {
     size,
     min,
     max,
-    same
+    same,
+    different
 }

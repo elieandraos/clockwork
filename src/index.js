@@ -29,6 +29,10 @@ const alpha_numeric = function(value) {
     return string(value) ? new RegExp("^[a-zA-Z0-9\\s]+$").test(value.toLowerCase())  : false;
 }
 
+const alpha_dash = function(value) {
+    return string(value) ? new RegExp("^[a-zA-Z-_]+$").test(value.toLowerCase()) : false;
+}
+
 module.exports = {
     required,
     string,
@@ -36,5 +40,6 @@ module.exports = {
     integer,
     numeric,
     alpha,
-    alpha_numeric
+    alpha_numeric,
+    alpha_dash
 }

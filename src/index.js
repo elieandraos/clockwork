@@ -41,6 +41,10 @@ const ends_with = function(value, arg = null) {
     return string(value) && string(arg) && value.endsWith(arg);
 }
 
+const boolean = function(value) {
+    return [true, false].includes(value);
+}
+
 module.exports = {
     required,
     string,
@@ -51,5 +55,6 @@ module.exports = {
     alpha_numeric,
     alpha_dash,
     starts_with,
-    ends_with
+    ends_with,
+    boolean
 }

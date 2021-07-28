@@ -106,8 +106,19 @@ const uuid = function(value) {
     return new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$").test(String(value).toLowerCase());
 }
 
-export function matches_regex(value, arg = null) {
+const matches_regex = function(value, arg = null) {
     return new RegExp(arg).test(String(value).toLowerCase());
+}
+
+const json = function(value) {
+    if(!string(value))
+        return false;
+
+    try {
+        return typeof JSON.parse(value) === "object";
+    } catch (e) {
+        return false;
+    }
 }
 
 module.exports = {
@@ -132,5 +143,6 @@ module.exports = {
     url,
     email,
     uuid,
-    matches_regex
+    matches_regex,
+    json
 }

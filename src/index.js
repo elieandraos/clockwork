@@ -122,10 +122,33 @@ const json = function(value) {
 }
 
 const dayjs = require('dayjs');
-//console.log(dayjs('2019-05-03').format('MM-DD-YYYY') );
-console.log(dayjs('2021-04-20').isValid()); // y-m-d passes
+
+// dayjs is a wrapper for the native Date() function.
+// All the supported date-string formats are supported.
+// the most common are 'y-m-d', 'm-d-y' for short versions.
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString
+// https://www.codegrepper.com/code-examples/javascript/toLocaleDateString%28%29+options
+
+//console.log(dayjs('2019/05/03').format('MM-DD-YYYY'));
+
+// short version date
+//console.log(dayjs('2021-04-20').isValid()); // y-m-d passes
 //console.log(dayjs('04-20-2021').isValid()); // m-d-y passes
-//console.log(dayjs('20-04-2021').isValid()); // d-m-y fails
+//console.log(dayjs('2021/04/20').isValid()); // y/m/d passes
+//console.log(dayjs('04/20/2021').isValid()); // m/d/y passes
+
+//console.log(dayjs('04/20').isValid()); // m/d passes
+//console.log(dayjs('20 4').isValid()); // d m fails
+
+// long version date
+//console.log( dayjs('Saturday, September 17, 2016').isValid()); // passes
+//console.log( dayjs('Saturday, Sept 17, 2016').isValid()); //passes
+
+//console.log( dayjs(null).isValid()); //fails
+//console.log( dayjs(undefined).isValid()); //passes
+//console.log( dayjs('foo').isValid()); //fails
+//console.log( dayjs([]).isValid()); //fails
+//console.log( dayjs(NaN).isValid()); //fails
 
 module.exports = {
     required,

@@ -121,6 +121,12 @@ const json = function(value) {
     }
 }
 
+const dayjs = require('dayjs');
+//console.log(dayjs('2019-05-03').format('MM-DD-YYYY') );
+console.log(dayjs('2021-04-20').isValid()); // y-m-d passes
+//console.log(dayjs('04-20-2021').isValid()); // m-d-y passes
+//console.log(dayjs('20-04-2021').isValid()); // d-m-y fails
+
 module.exports = {
     required,
     string,

@@ -1,3 +1,5 @@
+const dayjs = require('dayjs');
+
 const required = function(value)  {
     if( Array.isArray(value) && value.length === 0 )
         return false;
@@ -121,7 +123,9 @@ const json = function(value) {
     }
 }
 
-const dayjs = require('dayjs');
+const date = function(value) {
+    return dayjs(value).isValid();
+}
 
 // dayjs is a wrapper for the native Date() function.
 // All the supported date-string formats are supported.
@@ -173,5 +177,6 @@ module.exports = {
     email,
     uuid,
     matches_regex,
-    json
+    json,
+    date
 }

@@ -6,6 +6,9 @@ dayjs.extend(isSameOrAfter);
 const isSameOrBefore = require('dayjs/plugin/isSameOrBefore');
 dayjs.extend(isSameOrBefore);
 
+const isLeapYear = require('dayjs/plugin/isLeapYear')
+dayjs.extend(isLeapYear)
+
 const required = function(value)  {
     if( Array.isArray(value) && value.length === 0 )
         return false;
@@ -149,6 +152,10 @@ const before_or_equal = function(value, arg = null) {
     return dayjs(value).isSameOrBefore(arg);
 }
 
+const leap_year = function(value) {
+    return dayjs(value).isLeapYear();
+}
+
 module.exports = {
     required,
     string,
@@ -177,5 +184,6 @@ module.exports = {
     after,
     before,
     after_or_equal,
-    before_or_equal
+    before_or_equal,
+    leap_year
 }

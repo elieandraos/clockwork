@@ -1,5 +1,11 @@
 const dayjs = require('dayjs');
 
+const isSameOrAfter = require('dayjs/plugin/isSameOrAfter');
+dayjs.extend(isSameOrAfter);
+
+const isSameOrBefore = require('dayjs/plugin/isSameOrBefore');
+dayjs.extend(isSameOrBefore);
+
 const required = function(value)  {
     if( Array.isArray(value) && value.length === 0 )
         return false;
@@ -128,17 +134,19 @@ const date = function(value) {
 }
 
 const after = function(value, arg = null) {
-    if(!date(value) || !date(arg))
-        return false;
-
     return dayjs(value).isAfter(arg);
 }
 
 const before = function(value, arg = null) {
-    if(!date(value) || !date(arg))
-        return false;
-
     return dayjs(value).isBefore(arg);
+}
+
+const after_or_equal = function(value, arg = null) {
+    return dayjs(value).isSameOrAfter(arg);
+}
+
+const before_or_equal = function(value, arg = null) {
+    return dayjs(value).isSameOrBefore(arg);
 }
 
 module.exports = {
@@ -167,5 +175,7 @@ module.exports = {
     json,
     date,
     after,
-    before
+    before,
+    after_or_equal,
+    before_or_equal
 }

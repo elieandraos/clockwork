@@ -127,13 +127,12 @@ const date = function(value) {
     return dayjs(value).isValid();
 }
 
-// dayjs is a wrapper for the native Date() function.
-// All the supported date-string formats are supported.
-// the most common are 'y-m-d', 'm-d-y' for short versions.
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString
-// https://www.codegrepper.com/code-examples/javascript/toLocaleDateString%28%29+options
-// https://www.w3schools.com/js/js_date_formats.asp
-//console.log(dayjs('2019/05/03').format('MM-DD-YYYY'));
+const after = function(value, arg) {
+    if(!date(value) || !date(arg))
+        return false;
+
+    return dayjs(value).isAfter(arg);
+}
 
 module.exports = {
     required,
@@ -159,5 +158,6 @@ module.exports = {
     uuid,
     matches_regex,
     json,
-    date
+    date,
+    after
 }

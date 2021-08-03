@@ -1,6 +1,5 @@
 import { after } from "./../src/index";
 
-
 test("passes with valid condition", () => {
     expect( after("2021-8-4", "2020-8-4") ).toBe(true);
 })

@@ -107,12 +107,12 @@ const different = function(value, arg = null) {
 
 const url = function(value) {
     return new RegExp(
-        "^(http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$"
+        "^(http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-.][a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$"
     ).test(String(value).toLowerCase());
 }
 
 const email = function(value) {
-    return new RegExp("^\\S+@\\S+[\\.][0-9a-z]+$").test(String(value).toLowerCase());
+    return new RegExp("^\\S+@\\S+[.][0-9a-z]+$").test(String(value).toLowerCase());
 }
 
 const uuid = function(value) {

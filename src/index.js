@@ -127,11 +127,18 @@ const date = function(value) {
     return dayjs(value).isValid();
 }
 
-const after = function(value, arg) {
+const after = function(value, arg = null) {
     if(!date(value) || !date(arg))
         return false;
 
     return dayjs(value).isAfter(arg);
+}
+
+const before = function(value, arg = null) {
+    if(!date(value) || !date(arg))
+        return false;
+
+    return dayjs(value).isBefore(arg);
 }
 
 module.exports = {
@@ -159,5 +166,6 @@ module.exports = {
     matches_regex,
     json,
     date,
-    after
+    after,
+    before
 }

@@ -1,13 +1,18 @@
 const dayjs = require('dayjs');
 
 const isSameOrAfter = require('dayjs/plugin/isSameOrAfter');
-dayjs.extend(isSameOrAfter);
-
 const isSameOrBefore = require('dayjs/plugin/isSameOrBefore');
-dayjs.extend(isSameOrBefore);
+const isLeapYear = require('dayjs/plugin/isLeapYear');
+const isToday = require('dayjs/plugin/isToday');
+const isTomorrow = require('dayjs/plugin/isTomorrow');
+const isYesterday = require('dayjs/plugin/isYesterday');
 
-const isLeapYear = require('dayjs/plugin/isLeapYear')
-dayjs.extend(isLeapYear)
+dayjs.extend(isSameOrAfter);
+dayjs.extend(isSameOrBefore);
+dayjs.extend(isLeapYear);
+dayjs.extend(isToday);
+dayjs.extend(isTomorrow);
+dayjs.extend(isYesterday);
 
 const required = function(value)  {
     if( Array.isArray(value) && value.length === 0 )
@@ -156,6 +161,18 @@ const leap_year = function(value) {
     return dayjs(value).isLeapYear();
 }
 
+const today = function(value) {
+    return dayjs(value).isToday();
+}
+
+const tomorrow = function(value) {
+    return dayjs(value).isTomorrow();
+}
+
+const yesterday = function(value) {
+    return dayjs(value).isYesterday();
+}
+
 module.exports = {
     required,
     string,
@@ -185,5 +202,8 @@ module.exports = {
     before,
     after_or_equal,
     before_or_equal,
-    leap_year
+    leap_year,
+    today,
+    tomorrow,
+    yesterday
 }

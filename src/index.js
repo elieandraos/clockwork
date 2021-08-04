@@ -1,3 +1,16 @@
-import * as rules from "./rules";
+import * as predefinedRules from "./rules";
 
-module.exports = rules;
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+class Clockwork {
+    availableRules;
+    data;
+    validationRules;
+
+    constructor() {
+        this.availableRules = predefinedRules;
+        this.data = {};
+        this.validationRules = {};
+    }
+}
+
+export default Clockwork;

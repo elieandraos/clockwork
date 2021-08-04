@@ -1,4 +1,4 @@
-import { boolean} from "../src";
+import { boolean} from "../src/rules";
 
 test("passes with valid conditions", () => {
     expect( boolean(true) ).toBe(true);

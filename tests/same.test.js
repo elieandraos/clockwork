@@ -1,4 +1,4 @@
-import { same } from "../src";
+import { same } from "../src/rules";
 
 test('passes with valid conditions', () => {
     expect( same('foo', 'foo') ).toBe(true);

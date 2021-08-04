@@ -1,4 +1,4 @@
-import { integer } from "../src";
+import { integer } from "../src/rules";
 
 test("passes with integer", () => {
     expect( integer(1) ).toBe(true);

@@ -1,4 +1,4 @@
-import { yesterday } from "../src";
+import { yesterday } from "../src/rules";
 
 test("passes with valid condition", () => {
     let d = new Date();

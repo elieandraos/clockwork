@@ -1,4 +1,4 @@
-import { before } from "../src";
+import { before } from "../src/rules";
 
 test("passes with valid condition", () => {
     expect( before("2020-8-4", "2021-8-4") ).toBe(true);

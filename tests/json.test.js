@@ -1,4 +1,4 @@
-import { json } from "../src";
+import { json } from "../src/rules";
 
 test('passes with valid object', () => {
     expect( json("{}") ).toBe(true);

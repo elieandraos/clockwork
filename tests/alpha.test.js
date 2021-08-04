@@ -1,4 +1,4 @@
-import { alpha } from "../src";
+import { alpha } from "../src/rules";
 
 test("passes with letters only", () => {
     expect( alpha('foo') ).toBe(true);

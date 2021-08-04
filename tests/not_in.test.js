@@ -1,4 +1,4 @@
-import { not_in } from "../src";
+import { not_in } from "../src/rules";
 
 test('passes with array and valid condition', () => {
     expect( not_in('hello', ['foo', 'bar']) ).toBe(true);

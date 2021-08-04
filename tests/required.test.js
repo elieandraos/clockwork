@@ -1,4 +1,4 @@
-import { required } from "../src";
+import { required } from "../src/rules";
 
 test("fails with null", () => {
     expect(required(null)).toBe(false);

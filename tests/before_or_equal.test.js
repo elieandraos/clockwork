@@ -1,4 +1,4 @@
-import { before_or_equal } from "../src";
+import { before_or_equal } from "../src/rules";
 
 test("passes with valid condition", () => {
     expect( before_or_equal("2020-8-4", "2021-8-4") ).toBe(true);

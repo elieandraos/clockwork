@@ -1,4 +1,4 @@
-import { ends_with } from "../src";
+import { ends_with } from "../src/rules";
 
 test("passes with valid condition", () => {
     expect( ends_with('foo', 'o') ).toBe(true);

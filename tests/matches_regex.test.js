@@ -1,4 +1,4 @@
-import { matches_regex } from "../src";
+import { matches_regex } from "../src/rules";
 
 test('passes with valid pattern', () => {
     expect( matches_regex('foobar', '^[A-Za-z]+$') ).toBe(true);

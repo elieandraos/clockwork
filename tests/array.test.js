@@ -1,4 +1,4 @@
-import { array } from "../src";
+import { array } from "../src/rules";
 
 test("passes with array", () => {
     expect( array(['foo']) ).toBe(true);

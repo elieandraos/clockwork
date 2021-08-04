@@ -1,4 +1,4 @@
-import { after } from "../src";
+import { after } from "../src/rules";
 
 test("passes with valid condition", () => {
     expect( after("2021-8-4", "2020-8-4") ).toBe(true);

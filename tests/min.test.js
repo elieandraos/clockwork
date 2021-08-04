@@ -1,4 +1,4 @@
-import { min } from "../src";
+import { min } from "../src/rules";
 
 test('passes with numbers and valid condition', () => {
     expect( min(10, 5) ).toBe(true);

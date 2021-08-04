@@ -1,4 +1,4 @@
-import { leap_year } from "../src";
+import { leap_year } from "../src/rules";
 
 test("passes with valid condition", () => {
     expect( leap_year("2000-8-4") ).toBe(true);

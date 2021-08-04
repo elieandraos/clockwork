@@ -1,4 +1,4 @@
-import { numeric } from "../src";
+import { numeric } from "../src/rules";
 
 test("passes with integer", () => {
     expect( numeric(1) ).toBe(true);

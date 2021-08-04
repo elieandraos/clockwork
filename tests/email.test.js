@@ -1,4 +1,4 @@
-import { email } from "../src";
+import { email } from "../src/rules";
 
 test('passes with valid conditions', () => {
     expect( email('foo@bar.com') ).toBe(true);

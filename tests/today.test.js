@@ -1,4 +1,4 @@
-import { today } from "../src";
+import { today } from "../src/rules";
 
 test("passes with valid condition", () => {
     expect( today(new Date()) ).toBe(true);

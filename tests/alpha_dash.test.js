@@ -1,4 +1,4 @@
-import { alpha_dash } from "../src";
+import { alpha_dash } from "../src/rules";
 
 test("passes with letters only", () => {
     expect( alpha_dash('foo') ).toBe(true);

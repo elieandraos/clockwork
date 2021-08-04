@@ -1,4 +1,4 @@
-import { same } from "./../src/index";
+import { same } from "../src";
 
 test('passes with valid conditions', () => {
     expect( same('foo', 'foo') ).toBe(true);

@@ -1,4 +1,4 @@
-import { required } from "./../src/index";
+import { required } from "../src";
 
 test("fails with null", () => {
     expect(required(null)).toBe(false);

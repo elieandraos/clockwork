@@ -1,4 +1,4 @@
-import { tomorrow } from "./../src/index";
+import { tomorrow } from "../src";
 
 test("passes with valid condition", () => {
     let d = new Date();

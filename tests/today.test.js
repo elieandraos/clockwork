@@ -1,4 +1,4 @@
-import { today } from "./../src/index";
+import { today } from "../src";
 
 test("passes with valid condition", () => {
     expect( today(new Date()) ).toBe(true);

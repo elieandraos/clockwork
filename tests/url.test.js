@@ -1,4 +1,4 @@
-import { url } from './../src/index';
+import { url } from "../src";
 
 test('passes with valid urls', () => {
     expect( url('https://www.google.com') ).toBe(true);

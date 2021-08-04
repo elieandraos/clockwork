@@ -1,4 +1,4 @@
-import { email } from './../src/index';
+import { email } from "../src";
 
 test('passes with valid conditions', () => {
     expect( email('foo@bar.com') ).toBe(true);

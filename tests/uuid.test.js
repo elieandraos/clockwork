@@ -1,4 +1,4 @@
-import { uuid } from "./../src/index";
+import { uuid } from "../src";
 
 test('passes with valid condition', () => {
     expect( uuid('b3da27fd-aa19-401c-8db9-6bd53b48d4b0') ).toBe(true);

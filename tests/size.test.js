@@ -1,4 +1,4 @@
-import { size } from './../src/index';
+import { size } from "../src";
 
 test('passes with a string and a valid condition', () => {
     expect(size('foo', 3)).toBe(true);

@@ -1,4 +1,4 @@
-import { max } from './../src/index';
+import { max } from "../src";
 
 test('passes with numbers and valid condition', () => {
     expect( max(5, 10) ).toBe(true);

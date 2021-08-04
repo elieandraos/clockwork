@@ -1,4 +1,4 @@
-import { min } from './../src/index';
+import { min } from "../src";
 
 test('passes with numbers and valid condition', () => {
     expect( min(10, 5) ).toBe(true);

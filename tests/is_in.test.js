@@ -1,4 +1,4 @@
-import { is_in } from "./../src/index";
+import { is_in } from "../src";
 
 test('passes with array and valid condition', () => {
     expect( is_in('foo', ['foo', 'bar']) ).toBe(true);

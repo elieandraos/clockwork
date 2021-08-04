@@ -1,4 +1,4 @@
-import { starts_with } from './../src/index';
+import { starts_with } from "../src";
 
 test("passes with letters only", () => {
     expect( starts_with('foo', 'f') ).toBe(true);

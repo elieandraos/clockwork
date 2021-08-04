@@ -1,4 +1,4 @@
-import { array } from "./../src/index";
+import { array } from "../src";
 
 test("passes with array", () => {
     expect( array(['foo']) ).toBe(true);

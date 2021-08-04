@@ -1,4 +1,4 @@
-import { date } from "./../src/index";
+import { date } from "../src";
 
 test("passes with valid short versions date strings", () => {
     expect( date('2021-04-20') ).toBe(true);

@@ -1,4 +1,4 @@
-import { alpha_numeric } from './../src/index';
+import { alpha_numeric } from "../src";
 
 test("passes with letters only", () => {
     expect( alpha_numeric('foo') ).toBe(true);

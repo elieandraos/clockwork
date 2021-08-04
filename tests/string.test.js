@@ -1,4 +1,4 @@
-import { string } from './../src/index';
+import { string } from "../src";
 
 test("passes with string", () => {
     expect( string('foo') ).toBe(true);

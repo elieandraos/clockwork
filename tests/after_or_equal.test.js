@@ -1,4 +1,4 @@
-import { after_or_equal } from "./../src/index";
+import { after_or_equal } from "../src";
 
 test("passes with valid condition", () => {
     expect( after_or_equal("2021-8-4", "2020-8-4") ).toBe(true);

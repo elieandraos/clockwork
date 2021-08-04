@@ -1,4 +1,4 @@
-import { different } from "./../src/index";
+import { different } from "../src";
 
 test('passes with valid conditions', () => {
     expect( different('foo', 'bar')).toBe(true);

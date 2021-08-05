@@ -8,8 +8,24 @@ class Clockwork {
 
     constructor() {
         this.availableRules = predefinedRules;
-        this.data = {};
-        this.validationRules = {};
+        this.data = null;
+        this.validationRules = null;
+    }
+
+    setData(data) {
+        this.data = data;
+        return this;
+    }
+
+    setRules(rules) {
+        if(typeof rules !== 'object') {
+            console.log('not valid');
+            //throw new Error('passed argument must be an object.');
+        }
+
+        this.validationRules = rules;
+        return this;
+
     }
 }
 

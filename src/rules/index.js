@@ -123,6 +123,9 @@ const uuid = function(value) {
 }
 
 const matches_regex = function(value, arg = null) {
+    if(!string(value))
+        return false;
+
     return new RegExp(arg).test(String(value).toLowerCase());
 }
 

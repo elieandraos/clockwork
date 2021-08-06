@@ -22,11 +22,11 @@ test("it fails to set invalid data", () => {
     let setNullData = () => { clockwork.setData(null) };
     let setUndefinedData = () => { clockwork.setData(undefined) };
 
-    expect( setArrayData).toThrow(TypeError);
-    expect( setStringData).toThrow(TypeError);
-    expect( setNumberData).toThrow(TypeError);
-    expect( setNullData).toThrow(TypeError);
-    expect( setUndefinedData).toThrow(TypeError);
+    expect( setArrayData).toThrow(Error);
+    expect( setStringData).toThrow(Error);
+    expect( setNumberData).toThrow(Error);
+    expect( setNullData).toThrow(Error);
+    expect( setUndefinedData).toThrow(Error);
 });
 
 test("it sets rules", () => {
@@ -43,9 +43,29 @@ test("it fails to set invalid rules data type", () => {
     let setNullRules = () => { clockwork.setRules(null) };
     let setUndefinedRules = () => { clockwork.setRules(undefined) };
 
-    expect( setArrayRules).toThrow(TypeError);
-    expect( setStringRules).toThrow(TypeError);
-    expect( setNumberRules).toThrow(TypeError);
-    expect( setNullRules).toThrow(TypeError);
-    expect( setUndefinedRules).toThrow(TypeError);
+    expect( setArrayRules).toThrow(Error);
+    expect( setStringRules).toThrow(Error);
+    expect( setNumberRules).toThrow(Error);
+    expect( setNullRules).toThrow(Error);
+    expect( setUndefinedRules).toThrow(Error);
+});
+
+test("it fails to validate if rules are not set", () => {
+    clockwork.setRules({});
+
+    let withEmptyRules = () => {
+        clockwork.validate()
+    };
+
+    expect(withEmptyRules).toThrow(Error);
+});
+
+test("it fails to validate if data are not set", () => {
+    clockwork.setRules({ foo: 'required'}).setData({});
+
+    let withEmptyData = () => {
+        clockwork.validate()
+    };
+
+    expect(withEmptyData).toThrow(Error);
 });

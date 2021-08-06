@@ -1,5 +1,5 @@
-import { is_object } from "./utils";
 import * as availableRules from "./rules";
+import { is_object, is_empty_object } from "./utils";
 
 
 class Clockwork {
@@ -18,7 +18,7 @@ class Clockwork {
 
     setData(data) {
         if( !is_object(data) ) {
-            throw new TypeError('passed argument must be an object.');
+            throw new Error('setData() argument must be an object.');
         }
 
         this.#data = data;
@@ -27,7 +27,7 @@ class Clockwork {
 
     setRules(rules) {
         if( !is_object(rules) ) {
-            throw new TypeError('passed argument must be an object.');
+            throw new Error('setRules() argument must be an object.');
         }
 
         this.#rules = rules;
@@ -40,6 +40,16 @@ class Clockwork {
 
     getRules() {
         return this.#rules;
+    }
+
+    validate() {
+        if( is_empty_object(this.getRules()))
+            throw new Error('the validation rules are missing. Use Clockwork.setRules() to set them');
+
+        if( is_empty_object(this.getData()))
+            throw new Error('the validation data are missing. Use Clockwork.setData() to set them');
+
+        return true;
     }
 }
 

@@ -43,13 +43,17 @@ class Clockwork {
     }
 
     validate() {
-        if( is_empty_object(this.getRules()))
+        if( is_empty_object(this.#rules))
             throw new Error('the validation rules are missing. Use Clockwork.setRules() to set them');
 
-        if( is_empty_object(this.getData()))
+        if( is_empty_object(this.#data))
             throw new Error('the validation data are missing. Use Clockwork.setData() to set them');
 
-        return true;
+        for (let [_dataKey, _rules] of Object.entries(this.#rules)) {
+            console.log(_dataKey);
+            console.log(_rules);
+        }
+        //return true;
     }
 }
 

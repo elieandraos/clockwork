@@ -69,3 +69,16 @@ test("it fails to validate if data are not set", () => {
 
     expect(withEmptyData).toThrow(Error);
 });
+
+test.only("it validates", () => {
+    let rules = {
+        name: 'required | string',
+        age: 'required | integer'
+    };
+
+    let data = {
+        name: 12,
+        age: 12
+    }
+    clockwork.setRules(rules).setData(data).validate();
+});

@@ -14,54 +14,54 @@ dayjs.extend(isToday);
 dayjs.extend(isTomorrow);
 dayjs.extend(isYesterday);
 
-const required = function(value)  {
+export function required(value)  {
     if( Array.isArray(value) && value.length === 0 )
         return false;
     else
         return ![ null, undefined, '' ].includes(value);
 }
 
-const string = function(value) {
+export function string(value) {
     return typeof value === 'string';
 }
 
-const array = function(value) {
+export function array(value) {
     return Array.isArray(value);
 }
 
-const integer = function(value) {
+export function integer(value) {
     return Number.isInteger(value);
 }
 
-const numeric = function(value) {
+export function numeric(value) {
     return !Number.isNaN(parseFloat(value)) && isFinite(value);
 }
 
-const alpha = function(value) {
+export function alpha(value) {
     return string(value) && new RegExp("^[A-Za-z]+$").test(value.toLowerCase());
 }
 
-const alpha_numeric = function(value) {
+export function alpha_numeric(value) {
     return string(value) && new RegExp("^[a-zA-Z0-9\\s]+$").test(value.toLowerCase());
 }
 
-const alpha_dash = function(value) {
+export function alpha_dash(value) {
     return string(value) && new RegExp("^[a-zA-Z-_]+$").test(value.toLowerCase());
 }
 
-const starts_with = function(value, arg = null) {
+export function starts_with(value, arg = null) {
     return string(value) && string(arg) && value.startsWith(arg);
 }
 
-const ends_with = function(value, arg = null) {
+export function ends_with(value, arg = null) {
     return string(value) && string(arg) && value.endsWith(arg);
 }
 
-const boolean = function(value) {
+export function boolean(value) {
     return [true, false].includes(value);
 }
 
-const is_in = function(value, arg = null) {
+export function is_in(value, arg = null) {
     if(!string(arg) && !array(arg))
         return false;
 
@@ -69,18 +69,18 @@ const is_in = function(value, arg = null) {
     return arg.includes(value);
 }
 
-const not_in = function(value, arg = null) {
+export function not_in(value, arg = null) {
     if(!string(arg) && !array(arg))
         return false;
 
     return !is_in(value, arg);
 }
 
-const size = function(value, arg = null) {
+export function size(value, arg = null) {
     return (!string(value) && !array(value)) ? false : value.length === arg;
 }
 
-const min = function (value, arg = null) {
+export function min(value, arg = null) {
     if(!value && !array(value)) {
         return false;
     }
@@ -89,7 +89,7 @@ const min = function (value, arg = null) {
     return parseFloat(value) >= arg;
 }
 
-const max = function(value, arg = null) {
+export function max(value, arg = null) {
     if(!value && !array(value)) {
         return false;
     }
@@ -98,38 +98,38 @@ const max = function(value, arg = null) {
     return parseFloat(value) <= arg;
 }
 
-const same = function(value, arg = null) {
+export function same(value, arg = null) {
     return (typeof value === 'object') ? JSON.stringify(value) === JSON.stringify(arg) : value === arg;
 }
-const different = function(value, arg = null) {
+export function different(value, arg = null) {
     return !same(value, arg);
 }
 
-const url = function(value) {
+export function url(value) {
     return new RegExp(
         "^(http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-.][a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$"
     ).test(String(value).toLowerCase());
 }
 
-const email = function(value) {
+export function email(value) {
     return new RegExp("^\\S+@\\S+[.][0-9a-z]+$").test(String(value).toLowerCase());
 }
 
-const uuid = function(value) {
+export function uuid(value) {
     if(!string(value))
         return false;
 
     return new RegExp("^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$").test(String(value).toLowerCase());
 }
 
-const matches_regex = function(value, arg = null) {
+export function matches_regex(value, arg = null) {
     if(!string(value))
         return false;
 
     return new RegExp(arg).test(String(value).toLowerCase());
 }
 
-const json = function(value) {
+export function json(value) {
     if(!string(value))
         return false;
 
@@ -140,73 +140,38 @@ const json = function(value) {
     }
 }
 
-const date = function(value) {
+export function date (value) {
     return dayjs(value).isValid();
 }
 
-const after = function(value, arg = null) {
+export function after(value, arg = null) {
     return dayjs(value).isAfter(arg);
 }
 
-const before = function(value, arg = null) {
+export function before(value, arg = null) {
     return dayjs(value).isBefore(arg);
 }
 
-const after_or_equal = function(value, arg = null) {
+export function after_or_equal(value, arg = null) {
     return dayjs(value).isSameOrAfter(arg);
 }
 
-const before_or_equal = function(value, arg = null) {
+export function before_or_equal(value, arg = null) {
     return dayjs(value).isSameOrBefore(arg);
 }
 
-const leap_year = function(value) {
+export function leap_year(value) {
     return dayjs(value).isLeapYear();
 }
 
-const today = function(value) {
+export function today(value) {
     return dayjs(value).isToday();
 }
 
-const tomorrow = function(value) {
+export function tomorrow(value) {
     return dayjs(value).isTomorrow();
 }
 
-const yesterday = function(value) {
+export function yesterday(value) {
     return dayjs(value).isYesterday();
-}
-
-module.exports = {
-    required,
-    string,
-    array,
-    integer,
-    numeric,
-    alpha,
-    alpha_numeric,
-    alpha_dash,
-    starts_with,
-    ends_with,
-    boolean,
-    is_in,
-    not_in,
-    size,
-    min,
-    max,
-    same,
-    different,
-    url,
-    email,
-    uuid,
-    matches_regex,
-    json,
-    date,
-    after,
-    before,
-    after_or_equal,
-    before_or_equal,
-    leap_year,
-    today,
-    tomorrow,
-    yesterday
 }

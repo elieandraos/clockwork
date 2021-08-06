@@ -78,7 +78,13 @@ test.only("it validates", () => {
 
     let data = {
         name: 12,
-        age: 12
+        age: 55
     }
     clockwork.setRules(rules).setData(data).validate();
 });
+
+// parse given string: 'required | date | leap_year' will return [ 'required', 'date', 'leap_year' ]
+
+// validate:
+//    - test args: minimum:8 minimum:foo
+//    - test sometimes rule placed first, placed in the middle etc...

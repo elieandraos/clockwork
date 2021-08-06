@@ -64,13 +64,13 @@ test("it fails to validate if data are not set", () => {
     clockwork.setRules({ foo: 'required'}).setData({});
 
     let withEmptyData = () => {
-        clockwork.validate()
+        clockwork.passes()
     };
 
     expect(withEmptyData).toThrow(Error);
 });
 
-test.only("it validates", () => {
+test("it validates correctly", () => {
     let rules = {
         name: 'required | string',
         age: 'required | integer'
@@ -80,10 +80,8 @@ test.only("it validates", () => {
         name: 12,
         age: 55
     }
-    clockwork.setRules(rules).setData(data).validate();
+    clockwork.setRules(rules).setData(data).passes();
 });
-
-// parse given string: 'required | date | leap_year' will return [ 'required', 'date', 'leap_year' ]
 
 // validate:
 //    - test args: minimum:8 minimum:foo

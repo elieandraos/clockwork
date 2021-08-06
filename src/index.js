@@ -10,16 +10,15 @@ class Clockwork {
     /** private class properties **/
     #data;
     #rules;
+    #errorsBag;
 
     constructor() {
         this.availableRules = availableRules;
         this.#data = {};
         this.#rules = {};
+        this.#errorsBag = [];
     }
 
-    /**
-     * Set the data property. must be an object only.
-     */
     setData(data) {
         if( !is_object(data) ) {
             throw new Error('setData() argument must be an object.');
@@ -29,9 +28,6 @@ class Clockwork {
         return this;
     }
 
-    /**
-     * Set the rules property. must be an object only.
-     */
     setRules(rules) {
         if( !is_object(rules) ) {
             throw new Error('setRules() argument must be an object.');
@@ -41,48 +37,53 @@ class Clockwork {
         return this;
     }
 
-    /**
-     * Get the data property.
-     */
     getData() {
         return this.#data;
     }
 
-    /**
-     * Get the rules property.
-     */
     getRules() {
         return this.#rules;
     }
 
-    validate() {
+    passes() {
         if( is_empty_object(this.#rules))
-            throw new Error('the validation rules are missing. Use Clockwork.setRules() to set them');
+            throw new Error('the validation rules object is missing. Use Clockwork.setRules() to set them');
 
         if( is_empty_object(this.#data))
-            throw new Error('the validation data are missing. Use Clockwork.setData() to set them');
+            throw new Error('the validation data object is missing. Use Clockwork.setData() to set them');
+
+        return this.#validate();
+    }
+
+    fails() {
+        return !this.passes();
+    }
+
+    #validate() {
+        this.#errorsBag = [];
 
         for (let [dataKey, rulesString] of Object.entries(this.#rules)) {
             let value = Model.has(this.#data, dataKey) ? Model.get(this.#data, dataKey) : dataKey;
-            let rules = this.parseGivenRulesString(rulesString);
+            let rules = this.#parseGivenRulesString(rulesString);
 
+            // do not validate any other rule if value is null and 'sometimes' rule exists.
             if(rules.includes('sometimes') && !value) {
                 continue;
             }
 
             rules.forEach( (rule) => {
-                if(rule === 'sometimes')
+                // do not execute the 'sometimes' rule, skip it & continue the loop
+                if (rule === 'sometimes')
                     return;
 
-                this.executeRule(value, rule);
-            });
+                this.#executeRule(value, rule, dataKey);
+            })
         }
+
+        return !this.#errorsBag.length;
     }
 
-    /**
-     * Parses a given rule string and returns it as an array of rules.
-     */
-    parseGivenRulesString(rulesString) {
+    #parseGivenRulesString(rulesString) {
         let rules = rulesString.split('|');
 
         rules.forEach( (rule, k) => {
@@ -92,8 +93,16 @@ class Clockwork {
         return rules;
     }
 
-    executeRule(value, rule) {
-        console.log(rule + ':' + this.availableRules[rule](value));
+    #executeRule(value, ruleString, dataKey) {
+        let rule = ruleString;
+        // check for args
+
+        // run the rule
+        if(this.availableRules[rule](value))
+            return;
+
+        // add Error to error bag
+        console.log(dataKey+'.'+rule);
     }
 }
 

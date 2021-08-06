@@ -1,4 +1,4 @@
-import * as predefinedRules from "./rules";
+import * as availableRules from "./rules";
 
 class Clockwork {
     /** public class properties **/
@@ -6,12 +6,12 @@ class Clockwork {
 
     /** private class properties **/
     #data;
-    #validationRules;
+    #rules;
 
     constructor() {
-        this.availableRules = predefinedRules;
+        this.availableRules = availableRules;
         this.#data = {};
-        this.#validationRules = {};
+        this.#rules = {};
     }
 
     setData(data) {
@@ -28,7 +28,7 @@ class Clockwork {
             throw new TypeError('passed argument must be an object.');
         }
 
-        this.#validationRules = rules;
+        this.#rules = rules;
         return this;
     }
 
@@ -37,7 +37,7 @@ class Clockwork {
     }
 
     getRules() {
-        return this.#validationRules;
+        return this.#rules;
     }
 }
 

@@ -1,15 +1,17 @@
 import * as predefinedRules from "./rules";
 
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
 class Clockwork {
+    /** public class properties **/
     availableRules;
-    data;
-    validationRules;
+
+    /** private class properties **/
+    #data;
+    #validationRules;
 
     constructor() {
         this.availableRules = predefinedRules;
-        this.data = null;
-        this.validationRules = null;
+        this.#data = {};
+        this.#validationRules = {};
     }
 
     setData(data) {
@@ -17,7 +19,7 @@ class Clockwork {
             throw new TypeError('passed argument must be an object.');
         }
 
-        this.data = data;
+        this.#data = data;
         return this;
     }
 
@@ -26,8 +28,16 @@ class Clockwork {
             throw new TypeError('passed argument must be an object.');
         }
 
-        this.validationRules = rules;
+        this.#validationRules = rules;
         return this;
+    }
+
+    getData() {
+        return this.#data;
+    }
+
+    getRules() {
+        return this.#validationRules;
     }
 }
 

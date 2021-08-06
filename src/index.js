@@ -13,19 +13,21 @@ class Clockwork {
     }
 
     setData(data) {
+        if( !data || Array.isArray(data) || typeof data !== 'object' ) {
+            throw new TypeError('passed argument must be an object.');
+        }
+
         this.data = data;
         return this;
     }
 
     setRules(rules) {
-        if(typeof rules !== 'object') {
-            console.log('not valid');
-            //throw new Error('passed argument must be an object.');
+        if( !rules || Array.isArray(rules) || typeof rules !== 'object' ) {
+            throw new TypeError('passed argument must be an object.');
         }
 
         this.validationRules = rules;
         return this;
-
     }
 }
 

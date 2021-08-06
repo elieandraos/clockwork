@@ -1,4 +1,6 @@
+import { is_object } from "./utils";
 import * as availableRules from "./rules";
+
 
 class Clockwork {
     /** public class properties **/
@@ -15,7 +17,7 @@ class Clockwork {
     }
 
     setData(data) {
-        if( !data || Array.isArray(data) || typeof data !== 'object' ) {
+        if( !is_object(data) ) {
             throw new TypeError('passed argument must be an object.');
         }
 
@@ -24,7 +26,7 @@ class Clockwork {
     }
 
     setRules(rules) {
-        if( !rules || Array.isArray(rules) || typeof rules !== 'object' ) {
+        if( !is_object(rules) ) {
             throw new TypeError('passed argument must be an object.');
         }
 

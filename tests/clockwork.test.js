@@ -54,7 +54,7 @@ test("it fails to validate if rules are not set", () => {
     clockwork.setRules({});
 
     let withEmptyRules = () => {
-        clockwork.validate()
+        clockwork.passes()
     };
 
     expect(withEmptyRules).toThrow(Error);
@@ -70,17 +70,26 @@ test("it fails to validate if data are not set", () => {
     expect(withEmptyData).toThrow(Error);
 });
 
-test("it validates correctly", () => {
-    let rules = {
-        name: 'required | string',
-        age: 'required | integer'
-    };
+test("it passes all the rules", () => {
+    let rules = { name: 'required | string', age: 'required | integer' };
+    let data = { name: 'foo', age: 55 };
 
-    let data = {
-        name: 12,
-        age: 55
-    }
-    clockwork.setRules(rules).setData(data).passes();
+    clockwork.setRules(rules).setData(data);
+
+    expect(clockwork.passes()).toBe(true);
+    expect(clockwork.fails()).toBe(false);
+    // test error bag is empty
+});
+
+test("it fails when a rule do not pass", () => {
+    let rules = { name: 'required | string', age: 'required | integer' };
+    let data = { name: 12, age: 55 };
+
+    clockwork.setRules(rules).setData(data);
+
+    expect(clockwork.passes()).toBe(false);
+    expect(clockwork.fails()).toBe(true);
+    // test error bag is not empty
 });
 
 // validate:

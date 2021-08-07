@@ -96,13 +96,15 @@ class Clockwork {
     #executeRule(value, ruleString, dataKey) {
         let rule = ruleString;
         // check for args
+        // function returns object, use destructured object
+        // let { rule, arg } = getArgFromRuleString();
 
         // run the rule
         if(this.availableRules[rule](value))
             return;
 
         // add Error to error bag
-        console.log(dataKey+'.'+rule);
+        this.#errorsBag.push({ dataKey: 'error message'});
     }
 }
 

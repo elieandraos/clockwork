@@ -1,7 +1,6 @@
+const Model = require('dot-prop');
 import * as availableRules from "./rules";
 import { is_object, is_empty_object } from "./utils";
-
-const Model = require('dot-prop');
 
 class Clockwork {
     /** public class properties **/

@@ -82,13 +82,13 @@ test("it passes all the rules", () => {
 });
 
 test("it fails when a rule do not pass", () => {
-    let rules = { name: 'required | string', age: 'required | integer' };
-    let data = { name: 12, age: 55 };
+    let rules = { name: 'required | string | starts_with:gra', age: 'required | integer | min:minAge' };
+    let data = { name: 'grace', age: 25, minAge: 18 };
 
     clockwork.setRules(rules).setData(data);
 
-    expect(clockwork.passes()).toBe(false);
-    expect(clockwork.fails()).toBe(true);
+    expect(clockwork.passes()).toBe(true);
+    expect(clockwork.fails()).toBe(false);
     // test error bag is not empty
 });
 

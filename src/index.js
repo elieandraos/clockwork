@@ -1,5 +1,6 @@
 import * as availableRules from "./rules";
 import { is_object, is_empty_object } from "./utils";
+import dotProp from "dot-prop";
 
 const Model = require('dot-prop');
 
@@ -64,7 +65,7 @@ class Clockwork {
 
         for (let [dataKey, rulesString] of Object.entries(this.#rules)) {
             let value = Model.has(this.#data, dataKey) ? Model.get(this.#data, dataKey) : dataKey;
-            let rules = this.#parseGivenRulesString(rulesString);
+            let rules = this.#convertRuleStringToArray(rulesString);
 
             // do not validate any other rule if value is null and 'sometimes' rule exists.
             if(rules.includes('sometimes') && !value) {
@@ -83,7 +84,7 @@ class Clockwork {
         return !this.#errorsBag.length;
     }
 
-    #parseGivenRulesString(rulesString) {
+    #convertRuleStringToArray(rulesString) {
         let rules = rulesString.split('|');
 
         rules.forEach( (rule, k) => {
@@ -93,14 +94,27 @@ class Clockwork {
         return rules;
     }
 
-    #executeRule(value, ruleString, dataKey) {
+    #parseRuleAndArg(ruleString) {
         let rule = ruleString;
+        let arg = null;
+
+        if( typeof ruleString === 'string' && ruleString.split(':').length > 1 ) {
+            rule = ruleString.split(':')[0].trim();
+            arg = ruleString.split(':')[1].trim();
+
+            if(this.#data.hasOwnProperty(arg))
+                arg = Model.get(this.#data, arg);
+        }
+
+        return { rule: rule, arg: arg };
+    }
+
+    #executeRule(value, ruleString, dataKey) {
         // check for args
-        // function returns object, use destructured object
-        // let { rule, arg } = getArgFromRuleString();
+        let { rule, arg } = this.#parseRuleAndArg(ruleString);
 
         // run the rule
-        if(this.availableRules[rule](value))
+        if(this.availableRules[rule](value, arg))
             return;
 
         // add Error to error bag

@@ -95,3 +95,7 @@ test("it fails when a rule do not pass", () => {
 // validate:
 //    - test args: minimum:8 minimum:foo
 //    - test sometimes rule placed first, placed in the middle etc...
+//    - test rule not available
+//    - test nested data keys
+//    - test error bags
+//    - test extend

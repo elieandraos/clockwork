@@ -1,6 +1,5 @@
 import * as availableRules from "./rules";
 import { is_object, is_empty_object } from "./utils";
-import dotProp from "dot-prop";
 
 const Model = require('dot-prop');
 
@@ -65,7 +64,7 @@ class Clockwork {
 
         for (let [dataKey, rulesString] of Object.entries(this.#rules)) {
             let value = Model.has(this.#data, dataKey) ? Model.get(this.#data, dataKey) : dataKey;
-            let rules = this.#convertRuleStringToArray(rulesString);
+            let rules = this.#toArray(rulesString);
 
             // do not validate any other rule if value is null and 'sometimes' rule exists.
             if(rules.includes('sometimes') && !value) {
@@ -84,7 +83,7 @@ class Clockwork {
         return !this.#errorsBag.length;
     }
 
-    #convertRuleStringToArray(rulesString) {
+    #toArray(rulesString) {
         let rules = rulesString.split('|');
 
         rules.forEach( (rule, k) => {
@@ -94,7 +93,7 @@ class Clockwork {
         return rules;
     }
 
-    #parseRuleAndArg(ruleString) {
+    #parse(ruleString) {
         let rule = ruleString;
         let arg = null;
 
@@ -102,7 +101,7 @@ class Clockwork {
             rule = ruleString.split(':')[0].trim();
             arg = ruleString.split(':')[1].trim();
 
-            if(this.#data.hasOwnProperty(arg))
+            if(Model.has(this.#data, arg))
                 arg = Model.get(this.#data, arg);
         }
 
@@ -110,14 +109,19 @@ class Clockwork {
     }
 
     #executeRule(value, ruleString, dataKey) {
-        // check for args
-        let { rule, arg } = this.#parseRuleAndArg(ruleString);
+        // check if the rule string contains any given argument
+        let { rule, arg } = this.#parse(ruleString);
+
+        // check if the rule exists in the available rules
+        if(!this.availableRules[rule]) {
+            throw new Error('the rule "' + rule + '" does not exist.');
+        }
 
         // run the rule
         if(this.availableRules[rule](value, arg))
             return;
 
-        // add Error to error bag
+        // add Error to errorsBag in case of failure
         this.#errorsBag.push({ dataKey: 'error message'});
     }
 }

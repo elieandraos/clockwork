@@ -1,4 +1,4 @@
-import Clockwork from "../src";
+import Clockwork from "../../src";
 
 const clockwork = new Clockwork();
 
@@ -64,26 +64,6 @@ test("it fails to validate if data are not set", () => {
     expect(withEmptyData).toThrow(Error);
 });
 
-test("it passes all the rules", () => {
-    let rules = {name: 'required | string', age: 'required | integer'};
-    let data = {name: 'foo', age: 55};
-    clockwork.setRules(rules).setData(data);
-
-    expect(clockwork.passes()).toBe(true);
-    expect(clockwork.fails()).toBe(false);
-    // test error bag is empty
-});
-
-test("it fails when a rule do not pass", () => {
-    let rules = {name: 'required | string | starts_with:gra', age: 'required | integer | min:s'};
-    let data = {name: 11, age: 25, minAge: 18};
-    clockwork.setRules(rules).setData(data);
-
-    expect(clockwork.passes()).toBe(false);
-    expect(clockwork.fails()).toBe(true);
-    // test error bag is not empty
-});
-
 // validate:
 //    - test args: minimum:8 minimum:foo
 //    - test sometimes rule placed first, placed in the middle etc...
@@ -91,3 +71,5 @@ test("it fails when a rule do not pass", () => {
 //    - test nested data keys
 //    - test error bags
 //    - test extend
+//    - test error message
+//    - test custom error message (with param too)

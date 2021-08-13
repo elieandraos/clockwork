@@ -1,10 +1,11 @@
 const Model = require('dot-prop');
 import * as availableRules from "./rules";
-import { is_object, is_empty_object } from "./utils";
+import { is_object, is_empty_object, defaultErrorMessages } from "./utils";
 
 class Clockwork {
     /** public class properties **/
     availableRules;
+    defaultErrorMessages;
 
     /** private class properties **/
     #data;
@@ -12,10 +13,12 @@ class Clockwork {
     #errorsBag;
 
     constructor() {
-        this.availableRules = availableRules;
         this.#data = {};
         this.#rules = {};
         this.#errorsBag = [];
+
+        this.availableRules = availableRules;
+        this.defaultErrorMessages = defaultErrorMessages;
     }
 
     setData(data) {

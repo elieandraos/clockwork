@@ -78,7 +78,7 @@ class Clockwork {
                 this.#executeRule(value, rule, dataKey);
             })
         }
-
+        
         return !this.#errorsBag.length;
     }
 
@@ -121,7 +121,17 @@ class Clockwork {
             return;
 
         // add Error to errorsBag in case of failure
-        this.#errorsBag.push({ dataKey: 'error message'});
+        this.#addError(dataKey, rule, 'message');
+    }
+
+    #addError(dataKey, rule, errorMessage) {
+        let key = dataKey + '.' + rule;
+
+        this.#errorsBag.push({
+            key: key,
+            dataKey: dataKey,
+            message: errorMessage
+        });
     }
 }
 

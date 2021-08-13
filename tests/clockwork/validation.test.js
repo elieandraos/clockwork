@@ -42,3 +42,29 @@ test("'sometimes' order in the rule string does not matter", () => {
 
     expect(clockwork.passes()).toBe(true);
 });
+
+test("it parses arguments and validates correctly", () => {
+    let rules = { name: 'required | string | starts_with:foo | min:5'};
+    let data = { name: 'foobar' };
+    clockwork.setRules(rules).setData(data);
+
+    expect(clockwork.passes()).toBe(true);
+
+    data = { name: 'foo' };
+    clockwork.setRules(rules).setData(data);
+
+    expect(clockwork.passes()).toBe(false);
+
+    data = { name: 'barons' };
+    clockwork.setRules(rules).setData(data);
+
+    expect(clockwork.passes()).toBe(false);
+});
+
+test("it can also parse arguments from the data object and validates correctly.", () => {
+    let rules = { name: 'required | string | starts_with:shouldStartWith'};
+    let data = { name: 'foobar', shouldStartWith: 'foo' };
+
+    clockwork.setRules(rules).setData(data);
+    expect(clockwork.passes()).toBe(true);
+});

@@ -65,8 +65,6 @@ test("it fails to validate if data are not set", () => {
 });
 
 // validate:
-//    - test args: minimum:8 minimum:foo
-//    - test sometimes rule placed first, placed in the middle etc...
 //    - test rule not available
 //    - test nested data keys
 //    - test error bags

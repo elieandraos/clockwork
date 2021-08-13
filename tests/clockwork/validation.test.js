@@ -97,4 +97,13 @@ test("it parses nested data and validates correctly", () => {
 
     clockwork.setRules(rules).setData(data);
     expect(clockwork.passes()).toBe(false);
+
+    data = {
+        person: {
+            age: 50
+        }
+    };
+
+    clockwork.setRules(rules).setData(data);
+    expect(clockwork.passes()).toBe(true);
 });

@@ -78,7 +78,7 @@ class Clockwork {
                 this.#executeRule(value, rule, dataKey);
             })
         }
-        
+
         return !this.#errorsBag.length;
     }
 
@@ -120,7 +120,7 @@ class Clockwork {
         if(this.availableRules[rule](value, arg))
             return;
 
-        // add Error to errorsBag in case of failure
+        // add error to #errorsBag in case of failure
         this.#addError(dataKey, rule, 'message');
     }
 

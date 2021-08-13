@@ -65,7 +65,6 @@ test("it fails to validate if data are not set", () => {
 });
 
 // validate:
-//    - test rule not available
 //    - test nested data keys
 //    - test error bags
 //    - test extend

@@ -68,3 +68,33 @@ test("it can also parse arguments from the data object and validates correctly."
     clockwork.setRules(rules).setData(data);
     expect(clockwork.passes()).toBe(true);
 });
+
+test("it throws an error if a rule is not defined", () => {
+    let rules = { name: 'whatever'};
+    let data = { name: 'foo'};
+
+    clockwork.setRules(rules).setData(data);
+
+    let withUndefinedRule = () => { clockwork.passes() };
+    expect(withUndefinedRule).toThrow(Error);
+});
+
+test("it fails if it doesn't find the data property.", () => {
+    let rules = { age: 'integer'};
+    let data = { name: 'foobar' };
+
+    clockwork.setRules(rules).setData(data);
+    expect(clockwork.passes()).toBe(false);
+});
+
+test("it parses nested data and validates correctly", () => {
+    let rules = { 'person.age': 'required | integer | min:30'};
+    let data = {
+        person: {
+            age: 20
+        }
+    };
+
+    clockwork.setRules(rules).setData(data);
+    expect(clockwork.passes()).toBe(false);
+});

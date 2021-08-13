@@ -23,3 +23,7 @@ test("fails with array", () => {
 test("fails with object", () => {
     expect( before({}, {}) ).toBe(false);
 })
+
+test("fails with undefined", () => {
+    expect( before(undefined, undefined) ).toBe(false);
+})

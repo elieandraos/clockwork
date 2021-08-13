@@ -24,3 +24,7 @@ test("fails with array", () => {
 test("fails with object", () => {
     expect( after_or_equal({}, {}) ).toBe(false);
 })
+
+test("fails with undefined", () => {
+    expect( after_or_equal(undefined, undefined) ).toBe(false);
+})

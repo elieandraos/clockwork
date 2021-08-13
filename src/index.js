@@ -49,10 +49,10 @@ class Clockwork {
 
     passes() {
         if( is_empty_object(this.#rules))
-            throw new Error('the validation rules object is missing. Use Clockwork.setRules() to set them');
+            throw new Error('the rules object is missing. Use setRules() to set it');
 
         if( is_empty_object(this.#data))
-            throw new Error('the validation data object is missing. Use Clockwork.setData() to set them');
+            throw new Error('the data object is missing. Use setData() to set it');
 
         return this.#validate();
     }

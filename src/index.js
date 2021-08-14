@@ -6,6 +6,7 @@ class Clockwork {
     /** public class properties **/
     availableRules;
     defaultErrorMessages;
+    customErrorMessages;
 
     /** private class properties **/
     #data;
@@ -19,6 +20,7 @@ class Clockwork {
 
         this.availableRules = availableRules;
         this.defaultErrorMessages = defaultErrorMessages;
+        this.customErrorMessages = {};
     }
 
     setData(data) {
@@ -45,6 +47,19 @@ class Clockwork {
 
     getRules() {
         return this.#rules;
+    }
+
+    setCustomErrorMessages(errorMessages) {
+        if( !is_object(errorMessages) ) {
+            throw new Error('setCustomErrorMessages() argument must be an object.');
+        }
+
+        this.customErrorMessages = errorMessages;
+        return this;
+    }
+
+    getCustomErrorMessages() {
+        return this.customErrorMessages;
     }
 
     passes() {

@@ -41,14 +41,6 @@ class Clockwork {
         return this;
     }
 
-    getData() {
-        return this.#data;
-    }
-
-    getRules() {
-        return this.#rules;
-    }
-
     setCustomErrorMessages(errorMessages) {
         if( !is_object(errorMessages) ) {
             throw new Error('setCustomErrorMessages() argument must be an object.');
@@ -58,17 +50,19 @@ class Clockwork {
         return this;
     }
 
+    getData() {
+        return this.#data;
+    }
+
+    getRules() {
+        return this.#rules;
+    }
+
     getCustomErrorMessages() {
         return this.customErrorMessages;
     }
 
     passes() {
-        if( is_empty_object(this.#rules))
-            throw new Error('the rules object is missing. Use setRules() to set it');
-
-        if( is_empty_object(this.#data))
-            throw new Error('the data object is missing. Use setData() to set it');
-
         return this.#validate();
     }
 
@@ -76,7 +70,17 @@ class Clockwork {
         return !this.passes();
     }
 
+    getErrorBag(dataKey) {
+        return this.#errorsBag.filter(error => error.dataKey === dataKey);
+    }
+
     #validate() {
+        if( is_empty_object(this.#rules))
+            throw new Error('the rules object is missing. Use setRules() to set it');
+
+        if( is_empty_object(this.#data))
+            throw new Error('the data object is missing. Use setData() to set it');
+
         this.#errorsBag = [];
 
         for (let [dataKey, rulesString] of Object.entries(this.#rules)) {
@@ -139,7 +143,17 @@ class Clockwork {
             return;
 
         // add error to #errorsBag in case of failure
-        this.#addError(dataKey, rule, 'message');
+        let errorMessage = this.#getErrorMessage(dataKey, rule, arg);
+        this.#addError(dataKey, rule, errorMessage);
+    }
+
+    #getErrorMessage(dataKey, rule, arg = null) {
+        let message;
+        let key = dataKey + '.' + rule;
+
+        message = this.customErrorMessages.hasOwnProperty(key) ? this.customErrorMessages[key] : this.defaultErrorMessages[rule];
+
+        return message.replace('{param}', arg);
     }
 
     #addError(dataKey, rule, errorMessage) {

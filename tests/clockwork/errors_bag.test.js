@@ -84,3 +84,18 @@ test("it parses the rule argument correctly in custom error messages", () => {
 
     expect(clockwork.getFirstError('word')).toBe('it should be at least 5 characters.');
 })
+
+test("it parses a dynamic rule argument correctly in custom error message", () => {
+    let rules = {
+        word: 'required | min:nbChars'
+    }
+
+    let data = {
+        word: 'foo', nbChars: 5
+    }
+
+    clockwork.setCustomErrorMessages({ 'word.min': 'it should be at least {param} characters.' })
+    clockwork.setRules(rules).setData(data).passes();
+
+    expect(clockwork.getFirstError('word')).toBe('it should be at least 5 characters.');
+})

@@ -63,9 +63,3 @@ test("it fails to validate if data are not set", () => {
 
     expect(withEmptyData).toThrow(Error);
 });
-
-// validate:
-//    - test error bags
-//    - test extend
-//    - test error message
-//    - test custom error message (with param too)

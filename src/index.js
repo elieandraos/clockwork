@@ -70,8 +70,16 @@ class Clockwork {
         return !this.passes();
     }
 
-    getErrorBag(dataKey) {
-        return this.#errorsBag.filter(error => error.dataKey === dataKey);
+    hasErrors(dataKey) {
+        return !!this.getErrors(dataKey).length;
+    }
+
+    getErrors(dataKey) {
+        return this.#errorsBag.filter(error => error.dataKey === dataKey).map(item => item.message);
+    }
+
+    getFirstError(dataKey) {
+        return this.hasErrors(dataKey) ? this.getErrors(dataKey)[0] : null;
     }
 
     #validate() {

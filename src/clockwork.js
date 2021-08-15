@@ -95,8 +95,7 @@ class Clockwork {
             throw new Error('The closure of the rule "' + name + '" should be a function.');
         }
 
-        availableRules[name] = closure;
-        this.availableRules = availableRules;
+        this.availableRules[name] = closure;
 
         return this;
     }

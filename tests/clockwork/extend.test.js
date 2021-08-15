@@ -1,4 +1,4 @@
-import Clockwork from "../../src";
+import Clockwork from "../../src/clockwork";
 
 const clockwork = new Clockwork();
 

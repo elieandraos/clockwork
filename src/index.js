@@ -82,6 +82,25 @@ class Clockwork {
         return this.hasErrors(dataKey) ? this.getErrors(dataKey)[0] : null;
     }
 
+    extend(name, closure) {
+        if(!name || !closure) {
+            throw new Error('extend() requires too arguments: name string and callback function');
+        }
+
+        if(availableRules[name]) {
+            throw new Error('The rule "' + name + '" exists.');
+        }
+
+        if(typeof closure !== 'function') {
+            throw new Error('The closure of the rule "' + name + '" should be a function.');
+        }
+
+        availableRules[name] = closure;
+        this.availableRules = availableRules;
+
+        return this;
+    }
+
     #validate() {
         if( is_empty_object(this.#rules))
             throw new Error('the rules object is missing. Use setRules() to set it');

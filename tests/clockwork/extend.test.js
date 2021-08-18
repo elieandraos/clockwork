@@ -62,6 +62,11 @@ test("it throws an error if the rule already exist", () => {
     expect(ruleExists).toThrow(Error);
 });
 
+test("it throws an error if the closure does not return a boolean", () => {
+    let closure = () => { clockwork.extend('foo', () => {  }) };
+    expect(closure).toThrow(Error);
+});
+
 test("it throws an error if the closure is not a function", () => {
     let undefinedClosure = () => { clockwork.extend('greater_than', undefined) };
     expect(undefinedClosure).toThrow(Error);
@@ -69,9 +74,15 @@ test("it throws an error if the closure is not a function", () => {
     let arrayClosure = () => { clockwork.extend('greater_than', []) };
     expect(arrayClosure).toThrow(Error);
 
-    let stringClosure = () => { clockwork.extend('greater_than', 'foo') };
+    let stringClosure = () => { clockwork.extend('greater_than', '') };
     expect(stringClosure).toThrow(Error);
 
     let nullClosure = () => { clockwork.extend('greater_than', null) };
     expect(nullClosure).toThrow(Error);
+
+    let objectClosure = () => { clockwork.extend('greater_than', {}) };
+    expect(objectClosure).toThrow(Error);
+
+    let booleanClosure = () => { clockwork.extend('greater_than', true) };
+    expect(booleanClosure).toThrow(Error);
 });

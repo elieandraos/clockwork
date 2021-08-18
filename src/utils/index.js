@@ -17,6 +17,7 @@ export const defaultErrorMessages = {
     before_or_equal: 'This field must be a date before or equal to "{param}"',
     boolean: 'This field must be boolean',
     date: 'This field must be a valid date',
+    date_format: 'This date format must be "{param}"',
     different: 'This field must be different than "{param}"',
     email: 'This field must be a valid email.',
     ens_with: 'This field must end with "{param}"',

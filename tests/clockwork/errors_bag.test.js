@@ -99,3 +99,21 @@ test("it parses a dynamic rule argument correctly in custom error message", () =
 
     expect(clockwork.getFirstError('word')).toBe('it should be at least 5 characters.');
 })
+
+test("it throws an error if a rule is without custom error message", () => {
+    let rules = {
+        word: 'required | multiply_of:2'
+    }
+
+    let data = {
+        word: 'foo', nbChars: 5
+    }
+
+    clockwork.setRules(rules).setData(data).extend( 'multiply_of', (value, arg) => {
+        return value % arg === 0;
+    })
+
+    let noErrorMessage = () => { clockwork.passes() };
+
+    expect(noErrorMessage).toThrow(Error);
+});

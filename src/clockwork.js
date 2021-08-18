@@ -74,10 +74,16 @@ class Clockwork {
         return !!this.getErrors(dataKey).length;
     }
 
+    // should add getAllErrors()
+    // returns an object of { dataKey: [allDataKeyErrors] }
+
     getErrors(dataKey) {
         return this.#errorsBag.filter(error => error.dataKey === dataKey).map(item => item.message);
     }
 
+    //should be renamed to getError() with second optional argument as rule name.
+    // if rule name is not passed, by default returns the first error
+    // if rule is name passed, get the dataKey.rule error.
     getFirstError(dataKey) {
         return this.hasErrors(dataKey) ? this.getErrors(dataKey)[0] : null;
     }
@@ -92,7 +98,7 @@ class Clockwork {
         }
 
         if(typeof closure !== 'function' || {}.toString.call(closure) !== '[object Function]') {
-            throw new Error('The closure of the rule "' + name + '" should be a function.');
+            throw new Error('The closure of the custom rule "' + name + '" should be a function.');
         }
 
         if(typeof closure() !== 'boolean')

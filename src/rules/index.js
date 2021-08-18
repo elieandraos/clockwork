@@ -6,6 +6,7 @@ const isLeapYear = require('dayjs/plugin/isLeapYear');
 const isToday = require('dayjs/plugin/isToday');
 const isTomorrow = require('dayjs/plugin/isTomorrow');
 const isYesterday = require('dayjs/plugin/isYesterday');
+const customParseFormat = require('dayjs/plugin/customParseFormat');
 
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
@@ -13,6 +14,7 @@ dayjs.extend(isLeapYear);
 dayjs.extend(isToday);
 dayjs.extend(isTomorrow);
 dayjs.extend(isYesterday);
+dayjs.extend(customParseFormat);
 
 export function required(value)  {
     if( Array.isArray(value) && value.length === 0 )
@@ -174,4 +176,8 @@ export function tomorrow(value) {
 
 export function yesterday(value) {
     return dayjs(value).isYesterday();
+}
+
+export function date_format(value, arg) {
+    return dayjs(value, arg, true).isValid();
 }

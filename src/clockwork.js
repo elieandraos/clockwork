@@ -177,8 +177,14 @@ class Clockwork {
         let message;
         let key = dataKey + '.' + rule;
 
-        message = this.customErrorMessages.hasOwnProperty(key) ? this.customErrorMessages[key] : this.defaultErrorMessages[rule];
-
+        if( this.customErrorMessages.hasOwnProperty(key) )
+            message = this.customErrorMessages[key];
+        else {
+            if( this.defaultErrorMessages.hasOwnProperty(rule) )
+                message = this.defaultErrorMessages[rule];
+            else
+                throw new Error(`Set a customer error message for the rule ${rule}`);
+        }
         return message.replace('{param}', arg);
     }
 

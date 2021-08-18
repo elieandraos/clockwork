@@ -84,16 +84,19 @@ class Clockwork {
 
     extend(name, closure) {
         if(!name || !closure) {
-            throw new Error('extend() requires too arguments: name string and callback function');
+            throw new Error('extend() requires two arguments: name string and callback function');
         }
 
-        if(availableRules[name]) {
+        if(this.availableRules.hasOwnProperty(name)) {
             throw new Error('The rule "' + name + '" exists.');
         }
 
-        if(typeof closure !== 'function') {
+        if(typeof closure !== 'function' || {}.toString.call(closure) !== '[object Function]') {
             throw new Error('The closure of the rule "' + name + '" should be a function.');
         }
+
+        if(typeof closure() !== 'boolean')
+            throw new Error(`The closure of the custom rule ${name} should return a boolean`);
 
         this.availableRules[name] = closure;
 
@@ -160,7 +163,7 @@ class Clockwork {
         let { rule, arg } = this.#parse(ruleString);
 
         // check if the rule exists in the available rules
-        if(!this.availableRules[rule]) {
+        if(!this.availableRules.hasOwnProperty(rule)) {
             throw new Error('the rule "' + rule + '" does not exist.');
         }
 

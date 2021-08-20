@@ -1,49 +1,49 @@
 {
-  "name": "js-validation-rules",
-  "version": "1.0.0",
-  "description": "A wide variety of convenient validation rules that you may apply to your data",
-  "source": "src/clockwork.js",
-  "main": "dist/clockwork.js",
-  "module": "dist/clockwork.module.js",
-  "umd:main": "dist/clockwork.umd.js",
-  "unpkg": "dist/clockwork.min.js",
-  "scripts": {
-    "build": "microbundle",
-    "test": "jest --verbose --coverage",
-    "prettier": "npx prettier --write ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/elieandraos/js-validation-rules.git"
-  },
-  "keywords": [
-    "javascript",
-    "validation",
-    "rules",
-    "email",
-    "regex",
-    "required",
-    "number",
-    "between"
-  ],
-  "author": "Elie Andraos <elieandraos31@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/elieandraos/js-validation-rules/issues"
-  },
-  "homepage": "https://github.com/elieandraos/js-validation-rules#readme",
-  "devDependencies": {
-    "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.14.8",
-    "@babel/plugin-proposal-class-properties": "^7.14.5",
-    "@babel/preset-env": "^7.14.8",
-    "jest": "^27.0.6",
-    "microbundle": "^0.13.3",
-    "prettier": "2.3.2"
-  },
-  "dependencies": {
-    "dayjs": "^1.10.6",
-    "dot-prop": "^6.0.1",
-    "errorstacks": "^2.3.2"
-  }
+    "name": "js-validation-rules",
+    "version": "1.0.0",
+    "description": "A wide variety of convenient validation rules that you may apply to your data",
+    "source": "src/clockwork.js",
+    "main": "dist/clockwork.js",
+    "module": "dist/clockwork.module.js",
+    "umd:main": "dist/clockwork.umd.js",
+    "unpkg": "dist/clockwork.min.js",
+    "scripts": {
+        "build": "microbundle",
+        "test": "jest --verbose --coverage",
+        "prettier": "npx prettier --write ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/elieandraos/js-validation-rules.git"
+    },
+    "keywords": [
+        "javascript",
+        "validation",
+        "rules",
+        "email",
+        "regex",
+        "required",
+        "number",
+        "between"
+    ],
+    "author": "Elie Andraos <elieandraos31@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/elieandraos/js-validation-rules/issues"
+    },
+    "homepage": "https://github.com/elieandraos/js-validation-rules#readme",
+    "devDependencies": {
+        "@babel/cli": "^7.14.8",
+        "@babel/core": "^7.14.8",
+        "@babel/plugin-proposal-class-properties": "^7.14.5",
+        "@babel/preset-env": "^7.14.8",
+        "jest": "^27.0.6",
+        "microbundle": "^0.13.3",
+        "prettier": "2.3.2"
+    },
+    "dependencies": {
+        "dayjs": "^1.10.6",
+        "dot-prop": "^6.0.1",
+        "errorstacks": "^2.3.2"
+    }
 }

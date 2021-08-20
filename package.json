@@ -9,7 +9,8 @@
   "unpkg": "dist/clockwork.min.js",
   "scripts": {
     "build": "microbundle",
-    "test": "jest --verbose --coverage"
+    "test": "jest --verbose --coverage",
+    "prettier": "npx prettier --write ."
   },
   "repository": {
     "type": "git",

@@ -102,7 +102,7 @@ test('it parses nested data and validates correctly', () => {
 
     data = {
         person: {
-            age: 50,
+            age: 40,
         },
     }
 

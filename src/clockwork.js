@@ -23,9 +23,9 @@ class Clockwork {
         this.customErrorMessages = {}
     }
 
-    setData(data) {
+    setState(data) {
         if (!is_object(data)) {
-            throw new Error('setData() argument must be an object.')
+            throw new Error('setState() argument must be an object.')
         }
 
         this.#data = data
@@ -132,7 +132,7 @@ class Clockwork {
 
         if (is_empty_object(this.#data))
             throw new Error(
-                'the data object is missing. Use setData() to set it'
+                'the state object is missing. Use setState() to set it'
             )
 
         this.#errorsBag = []

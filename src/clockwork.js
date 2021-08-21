@@ -25,7 +25,7 @@ class Clockwork {
 
     setState(data) {
         if (!is_object(data)) {
-            throw new Error('setState() argument must be an object.')
+            throw new Error('setState() argument must be an object')
         }
 
         this.#data = data
@@ -34,7 +34,7 @@ class Clockwork {
 
     setRules(rules) {
         if (!is_object(rules)) {
-            throw new Error('setRules() argument must be an object.')
+            throw new Error('setRules() argument must be an object')
         }
 
         this.#rules = rules
@@ -44,7 +44,7 @@ class Clockwork {
     setCustomErrorMessages(errorMessages) {
         if (!is_object(errorMessages)) {
             throw new Error(
-                'setCustomErrorMessages() argument must be an object.'
+                'setCustomErrorMessages() argument must be an object'
             )
         }
 
@@ -100,7 +100,7 @@ class Clockwork {
         }
 
         if (this.availableRules.hasOwnProperty(name)) {
-            throw new Error('The rule "' + name + '" exists.')
+            throw new Error('The rule "' + name + '" exists')
         }
 
         if (
@@ -110,7 +110,7 @@ class Clockwork {
             throw new Error(
                 'The closure of the custom rule "' +
                     name +
-                    '" should be a function.'
+                    '" should be a function'
             )
         }
 

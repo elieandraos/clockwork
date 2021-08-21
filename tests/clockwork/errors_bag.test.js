@@ -11,7 +11,7 @@ test('it sets error bag for a failed data validation', () => {
         name: 12,
     }
 
-    clockwork.setRules(rules).setData(data).passes()
+    clockwork.setRules(rules).setState(data).passes()
 
     expect(clockwork.hasErrors('name')).toBe(true)
     expect(clockwork.getErrors('name').length).toBe(2)
@@ -29,7 +29,7 @@ test("it doesn't set any error for a correct data validation", () => {
         email: 'foo@bar.com',
     }
 
-    clockwork.setRules(rules).setData(data).passes()
+    clockwork.setRules(rules).setState(data).passes()
 
     expect(clockwork.hasErrors('email')).toBe(false)
     expect(clockwork.getErrors('email').length).toBe(0)
@@ -84,7 +84,7 @@ test('it returns custom error message after a failed validation', () => {
     clockwork.setCustomErrorMessages({
         'first_name.alpha': 'it name must only contain letters!',
     })
-    clockwork.setRules(rules).setData(data).passes()
+    clockwork.setRules(rules).setState(data).passes()
 
     expect(clockwork.getFirstError('first_name')).toBe(
         'it name must only contain letters!'
@@ -103,7 +103,7 @@ test('it parses the rule argument correctly in custom error messages', () => {
     clockwork.setCustomErrorMessages({
         'word.min': 'it should be at least {param} characters.',
     })
-    clockwork.setRules(rules).setData(data).passes()
+    clockwork.setRules(rules).setState(data).passes()
 
     expect(clockwork.getFirstError('word')).toBe(
         'it should be at least 5 characters.'
@@ -123,7 +123,7 @@ test('it parses a dynamic rule argument correctly in custom error message', () =
     clockwork.setCustomErrorMessages({
         'word.min': 'it should be at least {param} characters.',
     })
-    clockwork.setRules(rules).setData(data).passes()
+    clockwork.setRules(rules).setState(data).passes()
 
     expect(clockwork.getFirstError('word')).toBe(
         'it should be at least 5 characters.'
@@ -142,7 +142,7 @@ test('it throws an error if a rule is without custom error message', () => {
 
     clockwork
         .setRules(rules)
-        .setData(data)
+        .setState(data)
         .extend('multiply_of', (value, arg) => {
             return value % arg === 0
         })

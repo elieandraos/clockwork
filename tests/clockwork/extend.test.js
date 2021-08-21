@@ -13,7 +13,7 @@ test('it can validate a custom rule', () => {
 
     clockwork
         .setRules(rules)
-        .setData(data)
+        .setState(data)
         .setCustomErrorMessages({
             'age.greater_than_ten': 'age should be greater than 10!',
         })
@@ -26,7 +26,7 @@ test('it can validate a custom rule', () => {
         'age should be greater than 10!'
     )
 
-    clockwork.setData({ age: 12 })
+    clockwork.setState({ age: 12 })
     expect(clockwork.passes()).toBe(true)
     expect(clockwork.hasErrors('age')).toBe(false)
 })
@@ -42,7 +42,7 @@ test('it can validate a custom rule', () => {
 
     clockwork
         .setRules(rules)
-        .setData(data)
+        .setState(data)
         .setCustomErrorMessages({
             'age.greater_than': 'age should be greater than {param}!',
         })
@@ -53,7 +53,7 @@ test('it can validate a custom rule', () => {
     expect(clockwork.passes()).toBe(false)
     expect(clockwork.getFirstError('age')).toBe('age should be greater than 8!')
 
-    clockwork.setData({ age: 12 })
+    clockwork.setState({ age: 12 })
     expect(clockwork.passes()).toBe(true)
     expect(clockwork.hasErrors('age')).toBe(false)
 })

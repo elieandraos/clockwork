@@ -1,6 +1,8 @@
 # OSX
 .DS_Store
-dist/.DS_Store
+
+# bundle files
+dist/
 
 # IDE
 .idea

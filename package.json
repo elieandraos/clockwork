@@ -28,7 +28,8 @@
         "between",
         "date",
         "after",
-        "before"
+        "before",
+        "is_in"
     ],
     "author": "Elie Andraos <elieandraos31@gmail.com>",
     "license": "MIT",

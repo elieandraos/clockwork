@@ -1,4 +1,4 @@
-# This workflow will create a gitHub release whenever a commit starts with ":bookmark: release {package version}"
+# This workflow will create a gitHub release whenever a commit starts with ":bookmark: release"
 
 name: Release
 
@@ -9,14 +9,9 @@ on:
 jobs:
     release:
         runs-on: ubuntu-latest
-        if: "startsWith(github.event.head_commit.message, ':bookmark: release')"
         steps:
-            - uses: ChanTsune/release-with-commit@v2.1.0
+            - uses: marvinpinto/action-automatic-releases@latest
+              if: "startsWith(github.event.head_commit.message, ':bookmark: release') && startsWith(github.ref, 'refs/tags/')"
               with:
-                  release_name: 'v$1'
-                  tag_name: '$1'
-                  body: '$5'
-                  draft: false
+                  repo_token: "${{ secrets.GITHUB_TOKEN }}"
                   prerelease: false
-              env:
-                  GITHUB_TOKEN: '${{secrets.GITHUB_TOKEN}}'

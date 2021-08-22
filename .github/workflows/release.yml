@@ -1,0 +1,23 @@
+# This workflow will create a gitHub release whenever a commit starts with ":bookmark: release {package version}"
+
+name: Release
+
+on:
+    push:
+        branches:
+            - master
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: ChanTsune/release-with-commit@v2.1.0
+              with:
+                  regexp: ":bookmark: release ((\\d+([.]\\d+)*)-(alpha|beta|rc)\\d*)((\\s|\\S)*)"
+                  regexp_options: 'us'
+                  release_name: 'v$1'
+                  tag_name: '$1'
+                  body: '$5'
+                  draft: false
+                  prerelease: false
+              env:
+                  GITHUB_TOKEN: '${{secrets.GITHUB_TOKEN}}'

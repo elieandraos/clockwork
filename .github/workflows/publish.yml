@@ -1,3 +1,5 @@
+# This workflow will publish to npm whenever a gitHub release is created.
+
 name: Publish
 
 on:

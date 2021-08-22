@@ -1,0 +1,25 @@
+# This workflow will create a gitHub release whenever a commit starts with ":bookmark: release"
+# https://github.com/softprops/action-gh-release
+
+name: Create gitHub release
+
+on:
+    push:
+        branches: [master]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: Generate Changelog
+              run: echo "# Good things have arrived" > ${{ github.workspace }}-CHANGELOG.txt
+            - name: GitHub Release
+              uses: softprops/action-gh-release@v1
+              if: |
+                  startsWith(github.event.head_commit.message, ':bookmark: release')
+                  && startsWith(github.ref, 'refs/tags/')
+              with:
+                  body_path: ${{ github.workspace }}-CHANGELOG.txt
+                  token: ${{ secrets.ACCESS_TOKEN_GITHUB }}

@@ -1,4 +1,4 @@
-# This workflow will run prettier and commit to the used branch in case of code style fixes.
+# this workflow will run prettier and commit to the used branch in case of code style fixes.
 
 name: Code style
 
@@ -19,7 +19,7 @@ jobs:
             - uses: actions/checkout@v2
               with:
                   ref: ${{ github.head_ref }}
-                  token: ${{ secrets.GITHUB_TOKEN }}
+                  token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
             - uses: actions/setup-node@v2
               with:
                   node-version: ${{ matrix.node-version }}

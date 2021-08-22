@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, cache/restore them.
 # Build the source code and run tests across different versions of node
 
-name: Build
+name: Build & run tests
 
 on:
     push:

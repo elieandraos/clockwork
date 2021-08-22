@@ -9,11 +9,10 @@ on:
 jobs:
     release:
         runs-on: ubuntu-latest
+        if: "startsWith(github.event.head_commit.message, ':bookmark: release')"
         steps:
             - uses: ChanTsune/release-with-commit@v2.1.0
               with:
-                  regexp: ":bookmark: release ((\\d+([.]\\d+)*)-(alpha|beta|rc)\\d*)((\\s|\\S)*)"
-                  regexp_options: 'us'
                   release_name: 'v$1'
                   tag_name: '$1'
                   body: '$5'

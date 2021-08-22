@@ -25,7 +25,10 @@
         "regex",
         "required",
         "number",
-        "between"
+        "between",
+        "date",
+        "after",
+        "before"
     ],
     "author": "Elie Andraos <elieandraos31@gmail.com>",
     "license": "MIT",

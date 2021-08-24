@@ -1,7 +1,6 @@
-# This workflow will create a gitHub release whenever a commit starts with ":bookmark: release"
-# https://github.com/softprops/action-gh-release
+# This workflow will create a gitHub tag & release whenever a commit starts with ":bookmark: release"
 
-name: Create gitHub release
+name: Create gitHub tag & release
 
 on:
     push:
@@ -10,16 +9,22 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+        if: |
+            github.event.head_commit.message
+            && startsWith(github.event.head_commit.message, ':bookmark: release')
         steps:
-            - name: Checkout
-              uses: actions/checkout@v2
-            - name: Generate Changelog
-              run: echo "# Good things have arrived" > ${{ github.workspace }}-CHANGELOG.txt
-            - name: GitHub Release
-              uses: softprops/action-gh-release@v1
-              if: |
-                  startsWith(github.event.head_commit.message, ':bookmark: release')
-                  && startsWith(github.ref, 'refs/tags/')
+            - uses: actions/checkout@master
+            - name: Tag and prepare release
+              id: tag_and_prepare_release
+              uses: K-Phoen/semver-release-action@master
               with:
-                  body_path: ${{ github.workspace }}-CHANGELOG.txt
-                  token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
+                  release_branch: master
+              env:
+                  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_GITHUB }}
+            - name: Upload release notes
+              if: steps.tag_and_prepare_release.outputs.tag
+              uses: Roang-zero1/github-create-release-action@master
+              with:
+                  created_tag: ${{ steps.tag_and_prepare_release.outputs.tag }}
+              env:
+                  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_GITHUB }}

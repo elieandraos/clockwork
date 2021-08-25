@@ -1,8 +1,8 @@
 # Changelog
 
 ## v1.0.4
-### Fixed
--   Tag & release workflow
+### Deprecated
+-   Remove tag & release workflow
 
 ## v1.0.3
 ### Fixed
@@ -19,7 +19,6 @@
 
 ## v1.0.0
 ### Added
-
 -   30+ validation rules to validate data
 -   Elegant laravel-like
 -   State nested keys support

@@ -11,7 +11,8 @@
         "build": "microbundle",
         "test": "jest --verbose --coverage",
         "prettier": "npx prettier --write .",
-        "prettier-check": "npx prettier --check ."
+        "prettier-check": "npx prettier --check .",
+        "release": "node scripts/release.js"
     },
     "repository": {
         "type": "git",

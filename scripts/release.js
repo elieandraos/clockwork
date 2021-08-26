@@ -1,7 +1,7 @@
 // check if working directory is clean
 const shell = require('shelljs')
 
-if (shell.exec('git diff --stat', { silent: true }) !== '') {
+if (shell.exec('git diff --stat', { silent: true }).stdout !== '') {
     console.log('Working directory is not clean. Push your changes.')
     shell.exit(0)
 }

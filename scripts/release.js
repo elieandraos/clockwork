@@ -1,5 +1,5 @@
 const shell = require('shelljs')
-const { Select } = require('enquirer');
+const { Select } = require('enquirer')
 
 const checkGitStatus = () => {
     if (shell.exec('git diff --stat', { silent: true }).stdout !== '') {
@@ -14,20 +14,18 @@ const checkGitStatus = () => {
 const prompt = new Select({
     name: 'release',
     message: 'Pick a semantic release type?',
-    choices: ['patch', 'minor', 'major']
-});
+    choices: ['patch', 'minor', 'major'],
+})
 
-prompt.run().then(value => {
-    let release = value;
-    checkGitStatus();
-    console.log(release);
-});
+prompt.run().then((value) => {
+    let release = value
+    checkGitStatus()
+    console.log(release)
+})
 
 // npm bump version
 
-
 // check if changelog exists, if not checkout
-
 
 // bump package.json version: npm version major|minor|patch
 // parse change log

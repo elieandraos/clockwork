@@ -1,13 +1,33 @@
-// check if working directory is clean
 const shell = require('shelljs')
+const { Select } = require('enquirer');
 
-if (shell.exec('git diff --stat', { silent: true }).stdout !== '') {
-    console.log('Working directory is not clean. Push your changes.')
-    shell.exit(0)
+const checkGitStatus = () => {
+    if (shell.exec('git diff --stat', { silent: true }).stdout !== '') {
+        shell.echo('Working directory is not clean. Push your changes.')
+        shell.exit(0)
+    }
+
+    shell.echo('working directory is clean.')
 }
 
-// bump npm version
-console.log('working directory is clean.')
+// ask for release type
+const prompt = new Select({
+    name: 'release',
+    message: 'Pick a semantic release type?',
+    choices: ['patch', 'minor', 'major']
+});
+
+prompt.run().then(value => {
+    let release = value;
+    checkGitStatus();
+    console.log(release);
+});
+
+// npm bump version
+
+
+// check if changelog exists, if not checkout
+
 
 // bump package.json version: npm version major|minor|patch
 // parse change log
@@ -27,3 +47,5 @@ console.log('working directory is clean.')
 //     })
 
 // "release": "node scripts/release.js"
+
+// npm version --commit-hooks false --git-tag-version false <major|minor|patch>

@@ -10,20 +10,23 @@ const checkGitStatus = () => {
     shell.echo('working directory is clean.')
 }
 
-// ask for release type
+const bumpVersion = (release) => {
+    let version = shell.exec(`npm version --commit-hooks false --git-tag-version false ${release}`, { silent: true}).stdout
+    shell.echo(`bumping package to version ${version}`);
+    return version;
+}
+
+// start
 const prompt = new Select({
     name: 'release',
     message: 'Pick a semantic release type?',
     choices: ['patch', 'minor', 'major'],
 })
 
-prompt.run().then((value) => {
-    let release = value
-    checkGitStatus()
-    console.log(release)
+prompt.run().then((release) => {
+    //checkGitStatus()
+    let version = bumpVersion(release);
 })
-
-// npm bump version
 
 // check if changelog exists, if not checkout
 

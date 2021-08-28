@@ -2,7 +2,7 @@
 
 ## v1.0.4
 ### Deprecated
--   Remove tag & release workflow
+- Tag & release workflow
 
 ## v1.0.3
 ### Fixed

@@ -11,24 +11,27 @@ const abortWithMessage = (message) => {
     shell.exit(0)
 }
 
-const checkGitStatus = () => {
+const checkGitStatus = new Promise( (resolve) => {
     if (shell.exec('git diff --stat', { silent: true }).stdout !== '') {
         abortWithMessage('Working directory is not clean. Push your changes.')
     }
 
     console.log('working directory is clean.')
-}
+    resolve(true)
+})
 
 const bumpVersion = (release) => {
-    let version = shell
-        .exec(
-            `npm version --commit-hooks false --git-tag-version false ${release}`,
-            { silent: true }
-        )
-        .stdout.trim()
+    return new Promise((resolve) => {
+        let version = shell
+            .exec(
+                `npm version --commit-hooks false --git-tag-version false ${release}`,
+                { silent: true }
+            )
+            .stdout.trim()
 
-    console.log(`bumping package to version ${version}`)
-    return version
+        console.log(`bumping package to version ${version}`)
+        resolve(version)
+    })
 }
 
 const parseChangelog = (version) => {
@@ -56,17 +59,19 @@ const parseChangelog = (version) => {
 
 // start
 const prompt = new Select({
-    name: 'release',
+    name: 'semantic',
     message: 'Pick a semantic release type?',
     choices: ['patch', 'minor', 'major'],
 })
 
-prompt.run().then((release) => {
-    checkGitStatus()
-    let version = bumpVersion(release)
-    parseChangelog(version).then((body) => {
-        console.log(body)
-        // git commit package.json package-lock.json with message `:bookmark: release ${version}`
-        // git tag with changelog body and version
-    })
+prompt.run().then((semantic) => {
+    checkGitStatus.then( () => {
+        bumpVersion(semantic).then( version => {
+            parseChangelog(version).then((body) => {
+                console.log(body)
+                // git commit package.json package-lock.json with message `:bookmark: release ${version}`
+                // git tag with changelog body and version
+            })
+        })
+    });
 })

@@ -1,22 +1,54 @@
 const shell = require('shelljs')
 const { Select } = require('enquirer')
+const changelogParser = require('changelog-parser');
+
+const cancelRelease = () => {
+    shell.exec('git checkout package.json package-lock.json', { silent: true })
+}
+
+const abortWithMessage = (message) => {
+    console.log(message)
+    shell.exit(0)
+}
 
 const checkGitStatus = () => {
     if (shell.exec('git diff --stat', { silent: true }).stdout !== '') {
-        shell.echo('Working directory is not clean. Push your changes.')
-        shell.exit(0)
+        abortWithMessage('Working directory is not clean. Push your changes.')
     }
 
-    shell.echo('working directory is clean.')
+    console.log('working directory is clean.')
 }
 
 const bumpVersion = (release) => {
     let version = shell.exec(
         `npm version --commit-hooks false --git-tag-version false ${release}`,
         { silent: true }
-    ).stdout
-    shell.echo(`bumping package to version ${version}`)
+    ).stdout.trim()
+
+    console.log(`bumping package to version ${version}`)
     return version
+}
+
+const parseChangelog = (version) => {
+    return new Promise( (resolve, reject) => {
+        changelogParser('CHANGELOG.md')
+            .then(function (result) {
+                let changelog = result.versions.find( v => v.title === version);
+
+                if(!changelog) {
+                    cancelRelease();
+                    abortWithMessage(`Could not find ${version} changelog. Update CHANGELOG.md file.`);
+                }
+                else {
+                    resolve(changelog.body)
+                }
+            })
+            .catch(function (err) {
+                cancelRelease();
+                abortWithMessage('Could not parse CHANGELOG.md file.')
+                reject(err)
+            })
+    })
 }
 
 // start
@@ -27,29 +59,11 @@ const prompt = new Select({
 })
 
 prompt.run().then((release) => {
-    gcheckGitStatus()
+    //checkGitStatus()
     let version = bumpVersion(release)
+    parseChangelog(version).then( (body) => {
+        console.log(body);
+        // git commit package.json package-lock.json with message `:bookmark: release ${version}`
+        // git tag with changelog body and version
+    })
 })
-
-// check if changelog exists, if not checkout
-
-// bump package.json version: npm version major|minor|patch
-// parse change log
-// create git tag and release
-
-// const shell = require('shelljs');
-// const parseChangelog = require('changelog-parser');
-//
-// parseChangelog('CHANGELOG.md')
-//     .then(function (result) {
-//         // changelog object
-//         console.log(result)
-//     })
-//     .catch(function (err) {
-//         // Whoops, something went wrong!
-//         console.error(err)
-//     })
-
-// "release": "node scripts/release.js"
-
-// npm version --commit-hooks false --git-tag-version false <major|minor|patch>

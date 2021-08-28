@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.5
+### Added
+- Release workflow
+- 
 ## v1.0.4
 ### Deprecated
 - Tag & release workflow

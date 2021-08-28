@@ -24,7 +24,7 @@ const prompt = new Select({
 })
 
 prompt.run().then((release) => {
-    gcheckGitStatus()
+    checkGitStatus()
     let version = bumpVersion(release);
 })
 

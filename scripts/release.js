@@ -16,6 +16,8 @@ const checkGitStatus = new Promise( (resolve) => {
         abortWithMessage('Working directory is not clean. Push your changes.')
     }
 
+    // todo: heck if this is master branch (if not, cannot release)
+
     console.log('working directory is clean.')
     resolve(true)
 })
@@ -69,8 +71,12 @@ prompt.run().then((semantic) => {
         bumpVersion(semantic).then( version => {
             parseChangelog(version).then((body) => {
                 console.log(body)
-                // git commit package.json package-lock.json with message `:bookmark: release ${version}`
+                // git add package.json package-lock.json
+                // git commit message `:rocket: release ${version}`
                 // git tag with changelog body and version
+
+                //git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags
+                // https://docs.github.com/en/rest/reference/repos#releases
             })
         })
     });

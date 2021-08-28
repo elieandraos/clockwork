@@ -11,7 +11,7 @@ const abortWithMessage = (message) => {
     shell.exit(0)
 }
 
-const checkGitStatus = new Promise( (resolve) => {
+const checkGitStatus = new Promise((resolve) => {
     if (shell.exec('git diff --stat', { silent: true }).stdout !== '') {
         abortWithMessage('Working directory is not clean. Push your changes.')
     }
@@ -67,8 +67,8 @@ const prompt = new Select({
 })
 
 prompt.run().then((semantic) => {
-    checkGitStatus.then( () => {
-        bumpVersion(semantic).then( version => {
+    checkGitStatus.then(() => {
+        bumpVersion(semantic).then((version) => {
             parseChangelog(version).then((body) => {
                 console.log(body)
                 // git add package.json package-lock.json
@@ -79,5 +79,5 @@ prompt.run().then((semantic) => {
                 // https://docs.github.com/en/rest/reference/repos#releases
             })
         })
-    });
+    })
 })

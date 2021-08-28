@@ -11,9 +11,12 @@ const checkGitStatus = () => {
 }
 
 const bumpVersion = (release) => {
-    let version = shell.exec(`npm version --commit-hooks false --git-tag-version false ${release}`, { silent: true}).stdout
-    shell.echo(`bumping package to version ${version}`);
-    return version;
+    let version = shell.exec(
+        `npm version --commit-hooks false --git-tag-version false ${release}`,
+        { silent: true }
+    ).stdout
+    shell.echo(`bumping package to version ${version}`)
+    return version
 }
 
 // start
@@ -24,8 +27,8 @@ const prompt = new Select({
 })
 
 prompt.run().then((release) => {
-    checkGitStatus()
-    let version = bumpVersion(release);
+    gcheckGitStatus()
+    let version = bumpVersion(release)
 })
 
 // check if changelog exists, if not checkout

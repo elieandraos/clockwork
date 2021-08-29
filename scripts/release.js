@@ -72,8 +72,8 @@ prompt.run().then((semantic) => {
             parseChangelog(version).then((body) => {
                 let tag = version.substring(1)
 
-                shell.exec('git add .');
-                shell.exec(`git commit -m ':rocket: release ${version}'`);
+                shell.exec('git add .')
+                shell.exec(`git commit -m ':rocket: release ${version}'`)
                 shell.exec(`git tag ${tag}`)
                 shell.exec('git push --tags')
                 // git commit message `:rocket: release ${version}`

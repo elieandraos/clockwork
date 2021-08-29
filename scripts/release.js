@@ -70,7 +70,7 @@ prompt.run().then((semantic) => {
     checkGitStatus.then(() => {
         bumpVersion(semantic).then((version) => {
             parseChangelog(version).then((body) => {
-                console.log(body, version)
+                console.log(body, version.substring(1))
                 // git add package.json package-lock.json
                 // git commit message `:rocket: release ${version}`
                 // git tag with changelog body and version

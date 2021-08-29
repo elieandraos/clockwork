@@ -1,9 +1,10 @@
 # Changelog
 
 ## v1.0.5
-### Added
-- Release workflow
-- 
+### Fixed
+- Release script
+- Format gitHub action
+
 ## v1.0.4
 ### Deprecated
 - Tag & release workflow

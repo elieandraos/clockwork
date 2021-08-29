@@ -10,8 +10,8 @@
     "scripts": {
         "build": "microbundle",
         "test": "jest --verbose --coverage",
-        "prettier": "npx prettier --write .",
-        "prettier-check": "npx prettier --check .",
+        "format": "npx prettier --write .",
+        "format-check": "npx prettier --check .",
         "release": "node scripts/release.js"
     },
     "repository": {

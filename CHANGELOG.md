@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.6
+### testing
+- Release script
+
 ## v1.0.5
 ### Fixed
 - Release script

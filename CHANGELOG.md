@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.0.0
+## v1.0.1
 ### Added
 -   30+ validation rules to validate data
 -   Elegant laravel-like

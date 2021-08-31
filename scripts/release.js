@@ -1,6 +1,7 @@
 const shell = require('shelljs')
 const { Select } = require('enquirer')
 const changelogParser = require('changelog-parser')
+const { Octokit } = require('@octokit/core')
 
 const cancelRelease = () => {
     shell.exec('git checkout package.json package-lock.json', { silent: true })
@@ -59,6 +60,15 @@ const parseChangelog = (version) => {
     })
 }
 
+const createRelease = async (owner, repo, tag, version, body) => {
+    await Octokit.request('POST /repos/{owner}/{repo}/releases', {
+        owner: owner,
+        repo: repo,
+        tag_name: tag,
+        name: version,
+        body: body,
+    })
+}
 // start
 const prompt = new Select({
     name: 'semantic',
@@ -72,15 +82,17 @@ prompt.run().then((semantic) => {
             parseChangelog(version).then((body) => {
                 let tag = version.substring(1)
 
-                shell.exec('git add .')
+                shell.exec('git add package-lock.json package.json')
                 shell.exec(`git commit -m ':rocket: release ${version}'`)
                 shell.exec(`git tag ${tag}`)
-                shell.exec('git push --tags')
-                // git commit message `:rocket: release ${version}`
-                // git tag with changelog body and version
+                shell.exec('git push && git push --tags')
 
-                //git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags
                 // https://docs.github.com/en/rest/reference/repos#releases
+                createRelease('elieandraos', 'clockwork', tag, version, body)
+                    .then(() => {})
+                    .catch((err) => {
+                        console.log(err)
+                    })
             })
         })
     })

@@ -15,4 +15,5 @@ node_modules/
 coverage/
 
 # dev
+.env
 notes.txt

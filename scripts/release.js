@@ -2,6 +2,7 @@ const shell = require('shelljs')
 const { Select } = require('enquirer')
 const changelogParser = require('changelog-parser')
 const { Octokit } = require('@octokit/core')
+require('dotenv').config()
 
 const cancelRelease = () => {
     shell.exec('git checkout package.json package-lock.json', { silent: true })
@@ -61,7 +62,10 @@ const parseChangelog = (version) => {
 }
 
 const createRelease = async (owner, repo, tag, version, body) => {
-    await Octokit.request('POST /repos/{owner}/{repo}/releases', {
+    const octokit = new Octokit({
+        auth: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
+    })
+    await octokit.request('POST /repos/{owner}/{repo}/releases', {
         owner: owner,
         repo: repo,
         tag_name: tag,
@@ -82,14 +86,24 @@ prompt.run().then((semantic) => {
             parseChangelog(version).then((body) => {
                 let tag = version.substring(1)
 
-                shell.exec('git add package-lock.json package.json')
-                shell.exec(`git commit -m ':rocket: release ${version}'`)
-                shell.exec(`git tag ${tag}`)
-                shell.exec('git push && git push --tags')
+                shell.exec('git add package-lock.json package.json', {
+                    silent: true,
+                })
+                shell.exec(`git commit -m ':rocket: release ${version}'`, {
+                    silent: true,
+                })
+                shell.exec(`git tag ${tag}`, { silent: true })
+                shell.exec('git push && git push --tags', { silent: true })
 
-                // https://docs.github.com/en/rest/reference/repos#releases
+                console.log(`created gitHub tag ${tag}.`)
+
                 createRelease('elieandraos', 'clockwork', tag, version, body)
-                    .then(() => {})
+                    .then(() => {
+                        console.log(`created gitHub release ${version}.`)
+                        console.log(
+                            'gitHub action will publish to npm registry.'
+                        )
+                    })
                     .catch((err) => {
                         console.log(err)
                     })

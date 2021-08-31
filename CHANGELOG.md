@@ -2,8 +2,8 @@
 
 ## v1.0.1
 ### Added
--   30+ validation rules to validate data
--   Elegant laravel-like
+-   Elegant laravel-like validation api
+-   30+ validation rules
 -   State nested keys support
 -   Error bags
 -   Custom error messages

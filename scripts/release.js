@@ -15,7 +15,7 @@ const abortWithMessage = (message) => {
 
 const releaseChecklistValidated = new Promise((resolve) => {
     // check if .env token exists
-    if(!process.env.GITHUB_PERSONAL_ACCESS_TOKEN) {
+    if (!process.env.GITHUB_PERSONAL_ACCESS_TOKEN) {
         abortWithMessage('add GITHUB_PERSONAL_ACCESS_TOKEN in .env file')
     }
     console.log('GITHUB_PERSONAL_ACCESS_TOKEN exists')

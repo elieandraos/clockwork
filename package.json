@@ -1,6 +1,6 @@
 {
     "name": "@elieandraos/clockwork",
-    "version": "1.0.6",
+    "version": "1.0.0",
     "description": "A wide variety of convenient validation rules that you may apply to your data",
     "source": "src/clockwork.js",
     "main": "dist/clockwork.js",
@@ -40,6 +40,7 @@
     "homepage": "https://github.com/elieandraos/clockwork#readme",
     "devDependencies": {
         "@babel/preset-env": "^7.14.8",
+        "@octokit/core": "^3.5.1",
         "changelog-parser": "^2.8.0",
         "enquirer": "^2.3.6",
         "jest": "^27.0.6",

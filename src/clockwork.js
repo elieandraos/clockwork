@@ -43,9 +43,7 @@ class Clockwork {
 
     setCustomErrorMessages(errorMessages) {
         if (!is_object(errorMessages)) {
-            throw new Error(
-                'setCustomErrorMessages() argument must be an object'
-            )
+            throw new Error('setCustomErrorMessages() argument must be an object')
         }
 
         this.customErrorMessages = errorMessages
@@ -94,30 +92,19 @@ class Clockwork {
 
     extend(name, closure) {
         if (!name || !closure) {
-            throw new Error(
-                'extend() requires two arguments: name string and callback function'
-            )
+            throw new Error('extend() requires two arguments: name string and callback function')
         }
 
         if (this.availableRules.hasOwnProperty(name)) {
             throw new Error('The rule "' + name + '" exists')
         }
 
-        if (
-            typeof closure !== 'function' ||
-            {}.toString.call(closure) !== '[object Function]'
-        ) {
-            throw new Error(
-                'The closure of the custom rule "' +
-                    name +
-                    '" should be a function'
-            )
+        if (typeof closure !== 'function' || {}.toString.call(closure) !== '[object Function]') {
+            throw new Error('The closure of the custom rule "' + name + '" should be a function')
         }
 
         if (typeof closure() !== 'boolean')
-            throw new Error(
-                `The closure of the custom rule ${name} should return a boolean`
-            )
+            throw new Error(`The closure of the custom rule ${name} should return a boolean`)
 
         this.availableRules[name] = closure
 
@@ -126,21 +113,15 @@ class Clockwork {
 
     #validate() {
         if (is_empty_object(this.#rules))
-            throw new Error(
-                'the rules object is missing. Use setRules() to set it'
-            )
+            throw new Error('the rules object is missing. Use setRules() to set it')
 
         if (is_empty_object(this.#data))
-            throw new Error(
-                'the state object is missing. Use setState() to set it'
-            )
+            throw new Error('the state object is missing. Use setState() to set it')
 
         this.#errorsBag = []
 
         for (let [dataKey, rulesString] of Object.entries(this.#rules)) {
-            let value = Model.has(this.#data, dataKey)
-                ? Model.get(this.#data, dataKey)
-                : dataKey
+            let value = Model.has(this.#data, dataKey) ? Model.get(this.#data, dataKey) : dataKey
             let rules = this.#toArray(rulesString)
 
             // do not validate any other rule if value is null and 'sometimes' rule exists.
@@ -173,10 +154,7 @@ class Clockwork {
         let rule = ruleString
         let arg = null
 
-        if (
-            typeof ruleString === 'string' &&
-            ruleString.split(':').length > 1
-        ) {
+        if (typeof ruleString === 'string' && ruleString.split(':').length > 1) {
             rule = ruleString.split(':')[0].trim()
             arg = ruleString.split(':')[1].trim()
 
@@ -207,15 +185,11 @@ class Clockwork {
         let message
         let key = dataKey + '.' + rule
 
-        if (this.customErrorMessages.hasOwnProperty(key))
-            message = this.customErrorMessages[key]
+        if (this.customErrorMessages.hasOwnProperty(key)) message = this.customErrorMessages[key]
         else {
             if (this.defaultErrorMessages.hasOwnProperty(rule))
                 message = this.defaultErrorMessages[rule]
-            else
-                throw new Error(
-                    `Set a customer error message for the rule ${rule}`
-                )
+            else throw new Error(`Set a customer error message for the rule ${rule}`)
         }
         return message.replace('{param}', arg)
     }

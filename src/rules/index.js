@@ -42,16 +42,11 @@ export function alpha(value) {
 }
 
 export function alpha_numeric(value) {
-    return (
-        string(value) &&
-        new RegExp('^[a-zA-Z0-9\\s]+$').test(value.toLowerCase())
-    )
+    return string(value) && new RegExp('^[a-zA-Z0-9\\s]+$').test(value.toLowerCase())
 }
 
 export function alpha_dash(value) {
-    return (
-        string(value) && new RegExp('^[a-zA-Z-_]+$').test(value.toLowerCase())
-    )
+    return string(value) && new RegExp('^[a-zA-Z-_]+$').test(value.toLowerCase())
 }
 
 export function starts_with(value, arg = null) {
@@ -102,9 +97,7 @@ export function max(value, arg = null) {
 }
 
 export function same(value, arg = null) {
-    return typeof value === 'object'
-        ? JSON.stringify(value) === JSON.stringify(arg)
-        : value === arg
+    return typeof value === 'object' ? JSON.stringify(value) === JSON.stringify(arg) : value === arg
 }
 export function different(value, arg = null) {
     return !same(value, arg)
@@ -117,9 +110,7 @@ export function url(value) {
 }
 
 export function email(value) {
-    return new RegExp('^\\S+@\\S+[.][0-9a-z]+$').test(
-        String(value).toLowerCase()
-    )
+    return new RegExp('^\\S+@\\S+[.][0-9a-z]+$').test(String(value).toLowerCase())
 }
 
 export function uuid(value) {

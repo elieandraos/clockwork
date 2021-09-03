@@ -1,6 +1,6 @@
 # this workflow will run prettier and commit to the used branch in case of code format fixes.
 
-name: Code format
+name: Format code
 
 on:
     push:

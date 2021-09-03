@@ -33,10 +33,7 @@ const releaseChecklistValidated = new Promise((resolve) => {
     print('working directory is clean')
 
     // check if local branch is master
-    if (
-        shell.exec('git branch --show-current', { silent: true }).stdout !==
-        'master'
-    ) {
+    if (shell.exec('git branch --show-current', { silent: true }).stdout.trim() !== 'master') {
         abortWithMessage('switch to master branch to release the package')
     }
 
@@ -48,10 +45,9 @@ const releaseChecklistValidated = new Promise((resolve) => {
 const bumpVersion = (release) => {
     return new Promise((resolve) => {
         let version = shell
-            .exec(
-                `npm version --commit-hooks false --git-tag-version false ${release}`,
-                { silent: true }
-            )
+            .exec(`npm version --commit-hooks false --git-tag-version false ${release}`, {
+                silent: true,
+            })
             .stdout.trim()
 
         print(`bumped package to version ${version}`)
@@ -122,9 +118,7 @@ prompt.run().then((semantic) => {
                 createGitHubRelease('elieandraos', 'clockwork', version, body)
                     .then(() => {
                         print(`created gitHub release ${version}`)
-                        print(
-                            "The repo's gitHub action will publish the package to npm registry"
-                        )
+                        print("The repo's gitHub action will publish the package to npm registry")
                     })
                     .catch((err) => {
                         print(err)

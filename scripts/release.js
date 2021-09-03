@@ -13,19 +13,24 @@ const abortWithMessage = (message) => {
     shell.exit(0)
 }
 
+const print = (message) => {
+    console.log(message)
+}
+
 const releaseChecklistValidated = new Promise((resolve) => {
     // check if .env token exists
     if (!process.env.GITHUB_PERSONAL_ACCESS_TOKEN) {
         abortWithMessage('add GITHUB_PERSONAL_ACCESS_TOKEN in .env file')
     }
-    console.log('GITHUB_PERSONAL_ACCESS_TOKEN exists')
+
+    print('GITHUB_PERSONAL_ACCESS_TOKEN exists')
 
     // check if working directory is clean (nothing to commit)
     if (shell.exec('git diff --stat', { silent: true }).stdout !== '') {
         abortWithMessage('working directory is not clean - push your changes')
     }
 
-    console.log('working directory is clean')
+    print('working directory is clean')
 
     // check if local branch is master
     if (
@@ -35,7 +40,7 @@ const releaseChecklistValidated = new Promise((resolve) => {
         abortWithMessage('switch to master branch to release the package')
     }
 
-    console.log('current local branch: master')
+    print('current local branch: master')
 
     resolve(true)
 })
@@ -49,7 +54,7 @@ const bumpVersion = (release) => {
             )
             .stdout.trim()
 
-        console.log(`bumped package to version ${version}`)
+        print(`bumped package to version ${version}`)
         resolve(version)
     })
 }
@@ -85,7 +90,7 @@ const createGitHubTag = (version) => {
     shell.exec(`git tag ${tag}`, { silent: true })
     shell.exec('git push && git push --tags', { silent: true })
 
-    console.log(`created gitHub tag ${tag}`)
+    print(`created gitHub tag ${tag}`)
 }
 
 const createGitHubRelease = async (owner, repo, version, body) => {
@@ -116,13 +121,13 @@ prompt.run().then((semantic) => {
                 createGitHubTag(version)
                 createGitHubRelease('elieandraos', 'clockwork', version, body)
                     .then(() => {
-                        console.log(`created gitHub release ${version}`)
-                        console.log(
+                        print(`created gitHub release ${version}`)
+                        print(
                             "The repo's gitHub action will publish the package to npm registry"
                         )
                     })
                     .catch((err) => {
-                        console.log(err)
+                        print(err)
                     })
             })
         })

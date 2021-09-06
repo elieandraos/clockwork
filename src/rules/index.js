@@ -1,12 +1,11 @@
-const dayjs = require('dayjs')
-
-const isSameOrAfter = require('dayjs/plugin/isSameOrAfter')
-const isSameOrBefore = require('dayjs/plugin/isSameOrBefore')
-const isLeapYear = require('dayjs/plugin/isLeapYear')
-const isToday = require('dayjs/plugin/isToday')
-const isTomorrow = require('dayjs/plugin/isTomorrow')
-const isYesterday = require('dayjs/plugin/isYesterday')
-const customParseFormat = require('dayjs/plugin/customParseFormat')
+import dayjs from 'dayjs'
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
+import isLeapYear from 'dayjs/plugin/isLeapYear'
+import isToday from 'dayjs/plugin/isToday'
+import isTomorrow from 'dayjs/plugin/isTomorrow'
+import isYesterday from 'dayjs/plugin/isYesterday'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
 
 dayjs.extend(isSameOrAfter)
 dayjs.extend(isSameOrBefore)
@@ -16,69 +15,69 @@ dayjs.extend(isTomorrow)
 dayjs.extend(isYesterday)
 dayjs.extend(customParseFormat)
 
-export function required(value) {
+export const required = (value) => {
     if (Array.isArray(value) && value.length === 0) return false
     else return ![null, undefined, ''].includes(value)
 }
 
-export function string(value) {
+export const string = (value) => {
     return typeof value === 'string'
 }
 
-export function array(value) {
+export const array = (value) => {
     return Array.isArray(value)
 }
 
-export function integer(value) {
+export const integer = (value) => {
     return Number.isInteger(value)
 }
 
-export function numeric(value) {
+export const numeric = (value) => {
     return !Number.isNaN(parseFloat(value)) && isFinite(value)
 }
 
-export function alpha(value) {
+export const alpha = (value) => {
     return string(value) && new RegExp('^[A-Za-z]+$').test(value.toLowerCase())
 }
 
-export function alpha_numeric(value) {
+export const alpha_numeric = (value) => {
     return string(value) && new RegExp('^[a-zA-Z0-9\\s]+$').test(value.toLowerCase())
 }
 
-export function alpha_dash(value) {
+export const alpha_dash = (value) => {
     return string(value) && new RegExp('^[a-zA-Z-_]+$').test(value.toLowerCase())
 }
 
-export function starts_with(value, arg = null) {
+export const starts_with = (value, arg = null) => {
     return string(value) && string(arg) && value.startsWith(arg)
 }
 
-export function ends_with(value, arg = null) {
+export const ends_with = (value, arg = null) => {
     return string(value) && string(arg) && value.endsWith(arg)
 }
 
-export function boolean(value) {
+export const boolean = (value) => {
     return [true, false].includes(value)
 }
 
-export function is_in(value, arg = null) {
+export const is_in = (value, arg = null) => {
     if (!string(arg) && !array(arg)) return false
 
     arg = string(arg) ? arg.split(',') : arg
     return arg.includes(value)
 }
 
-export function not_in(value, arg = null) {
+export const not_in = (value, arg = null) => {
     if (!string(arg) && !array(arg)) return false
 
     return !is_in(value, arg)
 }
 
-export function size(value, arg = null) {
+export const size = (value, arg = null) => {
     return !string(value) && !array(value) ? false : value.length === arg
 }
 
-export function min(value, arg = null) {
+export const min = (value, arg = null) => {
     if (!value && !array(value)) {
         return false
     }
@@ -87,7 +86,7 @@ export function min(value, arg = null) {
     return parseFloat(value) >= arg
 }
 
-export function max(value, arg = null) {
+export const max = (value, arg = null) => {
     if (!value && !array(value)) {
         return false
     }
@@ -96,24 +95,24 @@ export function max(value, arg = null) {
     return parseFloat(value) <= arg
 }
 
-export function same(value, arg = null) {
+export const same = (value, arg = null) => {
     return typeof value === 'object' ? JSON.stringify(value) === JSON.stringify(arg) : value === arg
 }
-export function different(value, arg = null) {
+export const different = (value, arg = null) => {
     return !same(value, arg)
 }
 
-export function url(value) {
+export const url = (value) => {
     return new RegExp(
         '^(http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-.][a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$'
     ).test(String(value).toLowerCase())
 }
 
-export function email(value) {
+export const email = (value) => {
     return new RegExp('^\\S+@\\S+[.][0-9a-z]+$').test(String(value).toLowerCase())
 }
 
-export function uuid(value) {
+export const uuid = (value) => {
     if (!string(value)) return false
 
     return new RegExp(
@@ -121,13 +120,13 @@ export function uuid(value) {
     ).test(String(value).toLowerCase())
 }
 
-export function matches_regex(value, arg = null) {
+export const matches_regex = (value, arg = null) => {
     if (!string(value)) return false
 
     return new RegExp(arg).test(String(value).toLowerCase())
 }
 
-export function json(value) {
+export const json = (value) => {
     if (!string(value)) return false
 
     try {
@@ -137,42 +136,42 @@ export function json(value) {
     }
 }
 
-export function date(value) {
+export const date = (value) => {
     return dayjs(value).isValid()
 }
 
-export function after(value, arg = null) {
+export const after = (value, arg = null) => {
     return dayjs(value).isAfter(arg)
 }
 
-export function before(value, arg = null) {
+export const before = (value, arg = null) => {
     return dayjs(value).isBefore(arg)
 }
 
-export function after_or_equal(value, arg = null) {
+export const after_or_equal = (value, arg = null) => {
     return dayjs(value).isSameOrAfter(arg)
 }
 
-export function before_or_equal(value, arg = null) {
+export const before_or_equal = (value, arg = null) => {
     return dayjs(value).isSameOrBefore(arg)
 }
 
-export function leap_year(value) {
+export const leap_year = (value) => {
     return dayjs(value).isLeapYear()
 }
 
-export function today(value) {
+export const today = (value) => {
     return dayjs(value).isToday()
 }
 
-export function tomorrow(value) {
+export const tomorrow = (value) => {
     return dayjs(value).isTomorrow()
 }
 
-export function yesterday(value) {
+export const yesterday = (value) => {
     return dayjs(value).isYesterday()
 }
 
-export function date_format(value, arg) {
+export const date_format = (value, arg) => {
     return dayjs(value, arg, true).isValid()
 }

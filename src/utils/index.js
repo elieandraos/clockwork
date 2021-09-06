@@ -1,4 +1,4 @@
-export function is_object(value) {
+export const is_object = (value) => {
     return !(
         !value ||
         Array.isArray(value) ||
@@ -7,7 +7,7 @@ export function is_object(value) {
     )
 }
 
-export function is_empty_object(value) {
+export const is_empty_object = (value) => {
     return is_object(value) && Object.keys(value).length === 0
 }
 

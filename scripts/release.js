@@ -49,7 +49,7 @@ const releaseChecklistValidated = new Promise((resolve) => {
         shell.exec('git branch --show-current', { silent: true }).stdout.trim() !==
         process.env.RELEASE_BRANCH
     ) {
-        abortWithMessage(`switch to master ${process.env.RELEASE_BRANCH} to release the package`)
+        abortWithMessage(`switch to branch "${process.env.RELEASE_BRANCH}" to release the package`)
     }
 
     print(`git: releasing from local branch "${process.env.RELEASE_BRANCH}"`)

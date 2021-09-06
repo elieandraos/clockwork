@@ -40,6 +40,7 @@
         "changelog-parser": "^2.8.0",
         "dotenv": "^10.0.0",
         "enquirer": "^2.3.6",
+        "eslint": "^7.32.0",
         "jest": "^27.0.6",
         "microbundle": "^0.13.3",
         "prettier": "2.3.2",

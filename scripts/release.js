@@ -33,11 +33,11 @@ const releaseChecklistValidated = new Promise((resolve) => {
     print('working directory is clean')
 
     // check if local branch is master
-    if (shell.exec('git branch --show-current', { silent: true }).stdout.trim() !== 'master') {
-        abortWithMessage('switch to master branch to release the package')
+    if (shell.exec('git branch --show-current', { silent: true }).stdout.trim() !== process.env.RELEASE_BRANCH) {
+        abortWithMessage(`switch to master ${process.env.RELEASE_BRANCH} to release the package`)
     }
 
-    print('current local branch: master')
+    print(`release from local branch: ${process.env.RELEASE_BRANCH}`)
 
     resolve(true)
 })

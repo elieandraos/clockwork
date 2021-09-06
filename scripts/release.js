@@ -1,29 +1,31 @@
-const shell = require('shelljs')
-const { Select } = require('enquirer')
-const changelogParser = require('changelog-parser')
-const { Octokit } = require('@octokit/core')
 require('dotenv').config()
+
+const shell = require('shelljs')
+const colors = require('ansi-colors')
+const { Select } = require('enquirer')
+const { Octokit } = require('@octokit/core')
+const changelogParser = require('changelog-parser')
 
 const resetVersionedFiles = () => {
     shell.exec('git checkout package.json package-lock.json', { silent: true })
 }
 
 const abortWithMessage = (message) => {
-    console.log(message)
+    console.log(colors.red(`✗ ${message}`))
     shell.exit(0)
 }
 
 const print = (message) => {
-    console.log(message)
+    console.log(colors.green(`✔ ${message}`))
 }
 
 const releaseChecklistValidated = new Promise((resolve) => {
     // check if .env token exists
     if (!process.env.GITHUB_PERSONAL_ACCESS_TOKEN) {
-        abortWithMessage('add GITHUB_PERSONAL_ACCESS_TOKEN in .env file')
+        abortWithMessage('add github personal access token in .env file')
     }
 
-    print('GITHUB_PERSONAL_ACCESS_TOKEN exists')
+    print('github personal access token exists in .env file')
 
     // check if working directory is clean (nothing to commit)
     if (shell.exec('git diff --stat', { silent: true }).stdout !== '') {

@@ -12,6 +12,7 @@
         "test": "jest --verbose --coverage",
         "format": "npx prettier --write .",
         "format-check": "npx prettier --check .",
+        "lint": "npx eslint src",
         "release": "node scripts/release.js"
     },
     "repository": {
@@ -35,14 +36,13 @@
     },
     "homepage": "https://github.com/elieandraos/clockwork#readme",
     "devDependencies": {
+        "@babel/eslint-parser": "^7.15.4",
         "@babel/preset-env": "^7.14.8",
         "@octokit/core": "^3.5.1",
         "changelog-parser": "^2.8.0",
         "dotenv": "^10.0.0",
         "enquirer": "^2.3.6",
         "eslint": "^7.32.0",
-        "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-prettier": "^4.0.0",
         "jest": "^27.0.6",
         "microbundle": "^0.13.3",
         "prettier": "^2.3.2",

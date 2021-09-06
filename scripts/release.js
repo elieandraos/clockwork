@@ -11,7 +11,7 @@ const resetVersionedFiles = () => {
 }
 
 const abortWithMessage = (message) => {
-    console.log(colors.red(`✗ ${message}`))
+    console.log(colors.bold.red(`✗ ${message}`))
     shell.exit(0)
 }
 
@@ -20,19 +20,29 @@ const print = (message) => {
 }
 
 const releaseChecklistValidated = new Promise((resolve) => {
+    // run prettier
+    shell.exec('npm run format', { silent: true })
+
+    // run linter
+    if (shell.exec('npx eslint ./../src', { silent: true }).stdout) {
+        abortWithMessage('coding style errors found, run lint command for more details')
+    }
+
+    print('es-lint: coding style is okay')
+
     // check if .env token exists
     if (!process.env.GITHUB_PERSONAL_ACCESS_TOKEN) {
         abortWithMessage('add github personal access token in .env file')
     }
 
-    print('github personal access token exists in .env file')
+    print('env: github personal access token is set')
 
     // check if working directory is clean (nothing to commit)
     if (shell.exec('git diff --stat', { silent: true }).stdout !== '') {
-        abortWithMessage('working directory is not clean - push your changes')
+        abortWithMessage('working directory is not clean, push your changes')
     }
 
-    print('working directory is clean')
+    print('git: working directory is clean')
 
     // check if local branch is master
     if (
@@ -42,7 +52,7 @@ const releaseChecklistValidated = new Promise((resolve) => {
         abortWithMessage(`switch to master ${process.env.RELEASE_BRANCH} to release the package`)
     }
 
-    print(`release from local branch: ${process.env.RELEASE_BRANCH}`)
+    print(`git: releasing from local branch "${process.env.RELEASE_BRANCH}"`)
 
     resolve(true)
 })
@@ -55,7 +65,7 @@ const bumpVersion = (release) => {
             })
             .stdout.trim()
 
-        print(`bumped package to version ${version}`)
+        print(`npm: bumped package to version ${version}`)
         resolve(version)
     })
 }
@@ -72,6 +82,7 @@ const parseChangelog = (version) => {
                         `could not find ${version} changelog - update CHANGELOG.md file`
                     )
                 } else {
+                    print(`changelog: parse version ${version} release content`)
                     resolve(changelog.body)
                 }
             })
@@ -91,7 +102,7 @@ const createGitHubTag = (version) => {
     shell.exec(`git tag ${tag}`, { silent: true })
     shell.exec('git push && git push --tags', { silent: true })
 
-    print(`created gitHub tag ${tag}`)
+    print(`gitHub: created tag ${tag}`)
 }
 
 const createGitHubRelease = async (owner, repo, version, body) => {
@@ -122,8 +133,10 @@ prompt.run().then((semantic) => {
                 createGitHubTag(version)
                 createGitHubRelease('elieandraos', 'clockwork', version, body)
                     .then(() => {
-                        print(`created gitHub release ${version}`)
-                        print("The repo's gitHub action will publish the package to npm registry")
+                        print(`gitHub: created release ${version}`)
+                        print(
+                            "npm: The repo's gitHub action will publish the package to npm registry"
+                        )
                     })
                     .catch((err) => {
                         print(err)

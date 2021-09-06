@@ -1,4 +1,4 @@
-const Model = require('dot-prop')
+import * as Model from 'dot-prop'
 import * as availableRules from './rules'
 import { is_object, is_empty_object, defaultErrorMessages } from './utils'
 
@@ -95,7 +95,7 @@ class Clockwork {
             throw new Error('extend() requires two arguments: name string and callback function')
         }
 
-        if (this.availableRules.hasOwnProperty(name)) {
+        if (Object.prototype.hasOwnProperty.call(this.availableRules, name)) {
             throw new Error('The rule "' + name + '" exists')
         }
 
@@ -169,7 +169,7 @@ class Clockwork {
         let { rule, arg } = this.#parse(ruleString)
 
         // check if the rule exists in the available rules
-        if (!this.availableRules.hasOwnProperty(rule)) {
+        if (!Object.prototype.hasOwnProperty.call(this.availableRules, rule)) {
             throw new Error('the rule "' + rule + '" does not exist.')
         }
 
@@ -185,9 +185,10 @@ class Clockwork {
         let message
         let key = dataKey + '.' + rule
 
-        if (this.customErrorMessages.hasOwnProperty(key)) message = this.customErrorMessages[key]
-        else {
-            if (this.defaultErrorMessages.hasOwnProperty(rule))
+        if (Object.prototype.hasOwnProperty.call(this.customErrorMessages, key)) {
+            message = this.customErrorMessages[key]
+        } else {
+            if (Object.prototype.hasOwnProperty.call(this.defaultErrorMessages, rule))
                 message = this.defaultErrorMessages[rule]
             else throw new Error(`Set a customer error message for the rule ${rule}`)
         }

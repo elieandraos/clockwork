@@ -5,6 +5,9 @@
 - Configure es-lint
 - Release local branch configurable from .env
 - Style release CLI messages
+### Fixed
+- No object prototype built-ins methods
+- add prettier and linter to release checklist
 
 ## v1.0.1
 ### Added

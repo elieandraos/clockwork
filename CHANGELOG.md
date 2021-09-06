@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.2
+### Added
+- Configure es-lint
+
 ## v1.0.1
 ### Added
 -   Elegant laravel-like validation api

@@ -41,11 +41,16 @@ export const alpha = (value) => {
 }
 
 export const alpha_numeric = (value) => {
-    return string(value) && new RegExp('^[a-zA-Z0-9\\s]+$').test(value.toLowerCase())
+    return (
+        string(value) &&
+        new RegExp('^[a-zA-Z0-9\\s]+$').test(value.toLowerCase())
+    )
 }
 
 export const alpha_dash = (value) => {
-    return string(value) && new RegExp('^[a-zA-Z-_]+$').test(value.toLowerCase())
+    return (
+        string(value) && new RegExp('^[a-zA-Z-_]+$').test(value.toLowerCase())
+    )
 }
 
 export const starts_with = (value, arg = null) => {
@@ -96,7 +101,9 @@ export const max = (value, arg = null) => {
 }
 
 export const same = (value, arg = null) => {
-    return typeof value === 'object' ? JSON.stringify(value) === JSON.stringify(arg) : value === arg
+    return typeof value === 'object'
+        ? JSON.stringify(value) === JSON.stringify(arg)
+        : value === arg
 }
 export const different = (value, arg = null) => {
     return !same(value, arg)
@@ -109,7 +116,9 @@ export const url = (value) => {
 }
 
 export const email = (value) => {
-    return new RegExp('^\\S+@\\S+[.][0-9a-z]+$').test(String(value).toLowerCase())
+    return new RegExp('^\\S+@\\S+[.][0-9a-z]+$').test(
+        String(value).toLowerCase()
+    )
 }
 
 export const uuid = (value) => {

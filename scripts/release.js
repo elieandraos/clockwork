@@ -25,7 +25,9 @@ const releaseChecklistValidated = new Promise((resolve) => {
 
     // run linter
     if (shell.exec('npx eslint ./../src', { silent: true }).stdout) {
-        abortWithMessage('coding style errors found, run lint command for more details')
+        abortWithMessage(
+            'coding style errors found, run lint command for more details'
+        )
     }
 
     print('es-lint: coding style is okay')
@@ -46,10 +48,13 @@ const releaseChecklistValidated = new Promise((resolve) => {
 
     // check if local branch is master
     if (
-        shell.exec('git branch --show-current', { silent: true }).stdout.trim() !==
-        process.env.RELEASE_BRANCH
+        shell
+            .exec('git branch --show-current', { silent: true })
+            .stdout.trim() !== process.env.RELEASE_BRANCH
     ) {
-        abortWithMessage(`switch to branch "${process.env.RELEASE_BRANCH}" to release the package`)
+        abortWithMessage(
+            `switch to branch "${process.env.RELEASE_BRANCH}" to release the package`
+        )
     }
 
     print(`git: releasing from local branch "${process.env.RELEASE_BRANCH}"`)
@@ -60,9 +65,12 @@ const releaseChecklistValidated = new Promise((resolve) => {
 const bumpVersion = (release) => {
     return new Promise((resolve) => {
         let version = shell
-            .exec(`npm version --commit-hooks false --git-tag-version false ${release}`, {
-                silent: true,
-            })
+            .exec(
+                `npm version --commit-hooks false --git-tag-version false ${release}`,
+                {
+                    silent: true,
+                }
+            )
             .stdout.trim()
 
         print(`npm: bumped package to version ${version}`)

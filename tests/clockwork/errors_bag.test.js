@@ -15,7 +15,9 @@ test('it sets error bag for a failed data validation', () => {
 
     expect(clockwork.hasErrors('name')).toBe(true)
     expect(clockwork.getErrors('name').length).toBe(2)
-    expect(clockwork.getFirstError('name')).toBe(clockwork.defaultErrorMessages['string'])
+    expect(clockwork.getFirstError('name')).toBe(
+        clockwork.defaultErrorMessages['string']
+    )
 })
 
 test("it doesn't set any error for a correct data validation", () => {
@@ -41,7 +43,9 @@ test('it sets custom error messages', () => {
     }
     clockwork.setCustomErrorMessages(customErrorMessages)
 
-    expect(clockwork.getCustomErrorMessages() === customErrorMessages).toBe(true)
+    expect(clockwork.getCustomErrorMessages() === customErrorMessages).toBe(
+        true
+    )
 })
 
 test('it fails to set invalid custom error messages', () => {
@@ -82,7 +86,9 @@ test('it returns custom error message after a failed validation', () => {
     })
     clockwork.setRules(rules).setState(data).passes()
 
-    expect(clockwork.getFirstError('first_name')).toBe('it name must only contain letters!')
+    expect(clockwork.getFirstError('first_name')).toBe(
+        'it name must only contain letters!'
+    )
 })
 
 test('it parses the rule argument correctly in custom error messages', () => {
@@ -99,7 +105,9 @@ test('it parses the rule argument correctly in custom error messages', () => {
     })
     clockwork.setRules(rules).setState(data).passes()
 
-    expect(clockwork.getFirstError('word')).toBe('it should be at least 5 characters.')
+    expect(clockwork.getFirstError('word')).toBe(
+        'it should be at least 5 characters.'
+    )
 })
 
 test('it parses a dynamic rule argument correctly in custom error message', () => {
@@ -117,7 +125,9 @@ test('it parses a dynamic rule argument correctly in custom error message', () =
     })
     clockwork.setRules(rules).setState(data).passes()
 
-    expect(clockwork.getFirstError('word')).toBe('it should be at least 5 characters.')
+    expect(clockwork.getFirstError('word')).toBe(
+        'it should be at least 5 characters.'
+    )
 })
 
 test('it throws an error if a rule is without custom error message', () => {

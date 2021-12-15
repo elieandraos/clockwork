@@ -36,22 +36,16 @@
     },
     "homepage": "https://github.com/elieandraos/clockwork#readme",
     "devDependencies": {
-        "@babel/eslint-parser": "^7.15.4",
-        "@babel/preset-env": "^7.14.8",
-        "@octokit/core": "^3.5.1",
-        "ansi-colors": "^4.1.1",
-        "changelog-parser": "^2.8.0",
-        "dotenv": "^10.0.0",
-        "enquirer": "^2.3.6",
-        "eslint": "^7.32.0",
+        "eslint": "^8.4.1",
         "jest": "^27.0.6",
-        "microbundle": "^0.13.3",
-        "prettier": "^2.3.2",
-        "shelljs": "^0.8.4"
+        "prettier": "^2.5.1"
     },
     "dependencies": {
+        "@babel/preset-env": "^7.16.5",
+        "@elieandraos/cli-tools": "^0.0.5",
         "dayjs": "^1.10.6",
         "dot-prop": "^6.0.1",
-        "errorstacks": "^2.3.2"
+        "errorstacks": "^2.3.2",
+        "esm": "^3.2.25"
     }
 }

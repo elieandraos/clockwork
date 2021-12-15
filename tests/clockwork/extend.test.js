@@ -22,7 +22,9 @@ test('it can validate a custom rule', () => {
         })
 
     expect(clockwork.passes()).toBe(false)
-    expect(clockwork.getFirstError('age')).toBe('age should be greater than 10!')
+    expect(clockwork.getFirstError('age')).toBe(
+        'age should be greater than 10!'
+    )
 
     clockwork.setState({ age: 12 })
     expect(clockwork.passes()).toBe(true)

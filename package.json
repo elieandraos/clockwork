@@ -1,6 +1,6 @@
 {
     "name": "@elieandraos/clockwork",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A wide variety of convenient validation rules that you may apply to your data",
     "source": "src/clockwork.js",
     "main": "dist/index.js",

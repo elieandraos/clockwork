@@ -1,33 +1,12 @@
 # Changelog
 
-## v1.2.0
+## v1.0.0
 ### Added
-- :green_heart: custom build script with `esbuild`
-- :rocket: import release script from `@elieandraos/cli-tools`
-### Changed
-- :wrench: update es-lint configuration
-- :wrench: update prettier configuration
-- :see_no_evil: update `.gitignore` & `.prettierignore`
-### Removed
-- :fire: remove release script and all its related dependencies
-- :fire: remove microbundle dependency
-
-## v1.1.0
-### Added
-- Configure es-lint
-- Release local branch configurable from .env
-- Style release CLI messages
-### Fixed
-- No object prototype built-ins methods
-- add prettier and linter to release checklist
-
-## v1.0.1
-### Added
-- Elegant laravel-like validation api
-- 30+ validation rules
-- State nested keys support
-- Error bags
-- Custom error messages
-- Custom validation rules
-- Rule argument can accept raw data or a state data key
-- 100% test coverage
+- :lipstick: Elegant laravel-like validation api
+- :seedling: 30+ validation rules
+- :wheelchair: State nested keys support
+- :wastebasket: Error bags
+- :speech_balloon: Custom error messages
+- :building_construction: Custom validation rules
+- :goal_net: Rule argument can accept raw data or a state data key
+- :test_tube: 100% test coverage

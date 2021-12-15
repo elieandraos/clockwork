@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.2.0
+### Changed
+- :wrench: update es-lint configuration
+- :wrench: update prettier configuration
+- :green_heart: bundle with `esbuild`
+- :see_no_evil: update `.gitignore` & `.prettierignore`
+### Removed
+- No object prototype built-ins methods
+- add prettier and linter to release checklist
+
 ## v1.1.0
 ### Added
 - Configure es-lint

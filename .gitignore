@@ -1,8 +1,8 @@
+# dev
+.env
+
 # OSX
 .DS_Store
-
-# bundle files
-dist/
 
 # IDE
 .idea
@@ -14,6 +14,5 @@ node_modules/
 # jest
 coverage/
 
-# dev
-.env
-notes.txt
+# build
+dist/

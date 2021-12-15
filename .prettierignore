@@ -1,4 +1,21 @@
-# Ignore artifacts:
-coverage
-dist
+# release changelog
 CHANGELOG.md
+
+# documentation
+README.md
+
+# OSX
+.DS_Store
+
+# IDE
+.idea
+
+# npm
+node_modules/
+package-lock.json
+
+# jest
+coverage/
+
+# build
+dist/

@@ -1,4 +1,9 @@
 # Changelog
+## v1.0.1
+### Changed
+- :truck: Renamed `setState()` to `setData()
+### Added
+- :wheelchair: Added `getErrorsBag()` public method
 
 ## v1.0.0
 ### Added

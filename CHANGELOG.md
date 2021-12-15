@@ -1,14 +1,16 @@
 # Changelog
 
 ## v1.2.0
+### Added
+- :green_heart: custom build script with `esbuild`
+- :rocket: import release script from `@elieandraos/cli-tools`
 ### Changed
 - :wrench: update es-lint configuration
 - :wrench: update prettier configuration
-- :green_heart: bundle with `esbuild`
 - :see_no_evil: update `.gitignore` & `.prettierignore`
 ### Removed
-- No object prototype built-ins methods
-- add prettier and linter to release checklist
+- :fire: remove release script and all its related dependencies
+- :fire: remove microbundle dependency
 
 ## v1.1.0
 ### Added

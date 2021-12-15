@@ -1,4 +1,8 @@
 # Changelog
+## v1.0.3
+### Changed
+- :hammer: update npm build script
+ 
 ## v1.0.2
 ### Changed
 - :bulb: documentation update

@@ -1,4 +1,8 @@
 # Changelog
+## v1.0.4
+### Changed
+- :wheelchair: ditch private class properties
+
 ## v1.0.3
 ### Changed
 - :hammer: update npm build script

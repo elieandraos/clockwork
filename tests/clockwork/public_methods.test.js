@@ -10,26 +10,26 @@ test('it creates an instance of the class', () => {
 
 test('it sets data', () => {
     let data = { foo: 'bar', age: 35 }
-    clockwork.setState(data)
+    clockwork.setData(data)
 
     expect(clockwork.getData() === data).toBe(true)
 })
 
 test('it fails to set invalid data', () => {
     let setArrayData = () => {
-        clockwork.setState([])
+        clockwork.setData([])
     }
     let setStringData = () => {
-        clockwork.setState('')
+        clockwork.setData('')
     }
     let setNumberData = () => {
-        clockwork.setState(123)
+        clockwork.setData(123)
     }
     let setNullData = () => {
-        clockwork.setState(null)
+        clockwork.setData(null)
     }
     let setUndefinedData = () => {
-        clockwork.setState(undefined)
+        clockwork.setData(undefined)
     }
 
     expect(setArrayData).toThrow(Error)
@@ -80,7 +80,7 @@ test('it fails to validate if rules are not set', () => {
 })
 
 test('it fails to validate if data are not set', () => {
-    clockwork.setRules({ foo: 'required' }).setState({})
+    clockwork.setRules({ foo: 'required' }).setData({})
     let withEmptyData = () => {
         clockwork.passes()
     }

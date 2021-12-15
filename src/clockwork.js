@@ -23,9 +23,9 @@ class Clockwork {
         this.customErrorMessages = {}
     }
 
-    setState(data) {
+    setData(data) {
         if (!is_object(data)) {
-            throw new Error('setState() argument must be an object')
+            throw new Error('setData() argument must be an object')
         }
 
         this.#data = data
@@ -72,22 +72,20 @@ class Clockwork {
         return !this.passes()
     }
 
-    hasErrors(dataKey) {
-        return !!this.getErrors(dataKey).length
+    getErrorBag() {
+        return this.#errorsBag
     }
 
-    // should add getAllErrors()
-    // returns an object of { dataKey: [allDataKeyErrors] }
-
     getErrors(dataKey) {
-        return this.#errorsBag
+        return this.getErrorBag()
             .filter((error) => error.dataKey === dataKey)
             .map((item) => item.message)
     }
 
-    //should be renamed to getError() with second optional argument as rule name.
-    // if rule name is not passed, by default returns the first error
-    // if rule is name passed, get the dataKey.rule error.
+    hasErrors(dataKey) {
+        return !!this.getErrors(dataKey).length
+    }
+
     getFirstError(dataKey) {
         return this.hasErrors(dataKey) ? this.getErrors(dataKey)[0] : null
     }
@@ -132,7 +130,7 @@ class Clockwork {
 
         if (is_empty_object(this.#data))
             throw new Error(
-                'the state object is missing. Use setState() to set it'
+                'the state object is missing. Use setData() to set it'
             )
 
         this.#errorsBag = []

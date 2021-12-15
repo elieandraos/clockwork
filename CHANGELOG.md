@@ -1,4 +1,8 @@
 # Changelog
+## v1.0.2
+### Changed
+- :bulb: documentation update
+
 ## v1.0.1
 ### Changed
 - :truck: Renamed `setState()` to `setData()

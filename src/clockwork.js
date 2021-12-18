@@ -2,46 +2,33 @@ import * as Model from 'dot-prop'
 import * as availableRules from './rules'
 import { is_object, is_empty_object, defaultErrorMessages } from './utils'
 
-class Clockwork {
-    /** public class properties **/
-    availableRules
-    defaultErrorMessages
-    customErrorMessages
+function Clockwork() {
+    this.data = {}
+    this.rules = {}
+    this.errorsBag = []
+    this.availableRules = availableRules
+    this.defaultErrorMessages = defaultErrorMessages
+    this.customErrorMessages = {}
 
-    /** private class properties **/
-    #data
-    #rules
-    #errorsBag
-
-    constructor() {
-        this.#data = {}
-        this.#rules = {}
-        this.#errorsBag = []
-
-        this.availableRules = availableRules
-        this.defaultErrorMessages = defaultErrorMessages
-        this.customErrorMessages = {}
-    }
-
-    setData(data) {
+    this.setData = (data) => {
         if (!is_object(data)) {
             throw new Error('setData() argument must be an object')
         }
 
-        this.#data = data
+        this.data = data
         return this
     }
 
-    setRules(rules) {
+    this.setRules = (rules) => {
         if (!is_object(rules)) {
             throw new Error('setRules() argument must be an object')
         }
 
-        this.#rules = rules
+        this.rules = rules
         return this
     }
 
-    setCustomErrorMessages(errorMessages) {
+    this.setCustomErrorMessages = (errorMessages) => {
         if (!is_object(errorMessages)) {
             throw new Error(
                 'setCustomErrorMessages() argument must be an object'
@@ -52,45 +39,45 @@ class Clockwork {
         return this
     }
 
-    getData() {
-        return this.#data
+    this.getData = () => {
+        return this.data
     }
 
-    getRules() {
-        return this.#rules
+    this.getRules = () => {
+        return this.rules
     }
 
-    getCustomErrorMessages() {
+    this.getCustomErrorMessages = () => {
         return this.customErrorMessages
     }
 
-    passes() {
-        return this.#validate()
+    this.passes = () => {
+        return this.validate()
     }
 
-    fails() {
+    this.fails = () => {
         return !this.passes()
     }
 
-    getErrorBag() {
-        return this.#errorsBag
+    this.getErrorBag = () => {
+        return this.errorsBag
     }
 
-    getErrors(dataKey) {
+    this.getErrors = (key) => {
         return this.getErrorBag()
-            .filter((error) => error.dataKey === dataKey)
+            .filter(({ dataKey }) => dataKey === key)
             .map((item) => item.message)
     }
 
-    hasErrors(dataKey) {
+    this.hasErrors = (dataKey) => {
         return !!this.getErrors(dataKey).length
     }
 
-    getFirstError(dataKey) {
+    this.getFirstError = (dataKey) => {
         return this.hasErrors(dataKey) ? this.getErrors(dataKey)[0] : null
     }
 
-    extend(name, closure) {
+    this.extend = (name, closure) => {
         if (!name || !closure) {
             throw new Error(
                 'extend() requires two arguments: name string and callback function'
@@ -106,9 +93,7 @@ class Clockwork {
             {}.toString.call(closure) !== '[object Function]'
         ) {
             throw new Error(
-                'The closure of the custom rule "' +
-                name +
-                '" should be a function'
+                `The closure of the custom rule ${name} should be a function`
             )
         }
 
@@ -122,24 +107,24 @@ class Clockwork {
         return this
     }
 
-    #validate() {
-        if (is_empty_object(this.#rules))
+    this.validate = () => {
+        if (is_empty_object(this.rules))
             throw new Error(
                 'the rules object is missing. Use setRules() to set it'
             )
 
-        if (is_empty_object(this.#data))
+        if (is_empty_object(this.data))
             throw new Error(
                 'the state object is missing. Use setData() to set it'
             )
 
-        this.#errorsBag = []
+        this.errorsBag = []
 
-        for (let [dataKey, rulesString] of Object.entries(this.#rules)) {
-            let value = Model.has(this.#data, dataKey)
-                ? Model.get(this.#data, dataKey)
+        for (let [dataKey, rulesString] of Object.entries(this.rules)) {
+            let value = Model.has(this.data, dataKey)
+                ? Model.get(this.data, dataKey)
                 : dataKey
-            let rules = this.#toArray(rulesString)
+            let rules = this.toArray(rulesString)
 
             // do not validate any other rule if value is null and 'sometimes' rule exists.
             if (rules.includes('sometimes') && !value) {
@@ -150,14 +135,14 @@ class Clockwork {
                 // do not execute the 'sometimes' rule, skip it & continue the loop
                 if (rule === 'sometimes') return
 
-                this.#executeRule(value, rule, dataKey)
+                this.executeRule(value, rule, dataKey)
             })
         }
 
-        return !this.#errorsBag.length
+        return !this.errorsBag.length
     }
 
-    #toArray(rulesString) {
+    this.toArray = (rulesString) => {
         let rules = rulesString.split('|')
 
         rules.forEach((rule, k) => {
@@ -167,7 +152,7 @@ class Clockwork {
         return rules
     }
 
-    #parse(ruleString) {
+    this.parse = (ruleString) => {
         let rule = ruleString
         let arg = null
 
@@ -178,15 +163,15 @@ class Clockwork {
             rule = ruleString.split(':')[0].trim()
             arg = ruleString.split(':')[1].trim()
 
-            if (Model.has(this.#data, arg)) arg = Model.get(this.#data, arg)
+            if (Model.has(this.data, arg)) arg = Model.get(this.data, arg)
         }
 
         return { rule: rule, arg: arg }
     }
 
-    #executeRule(value, ruleString, dataKey) {
+    this.executeRule = (value, ruleString, dataKey) => {
         // check if the rule string contains any given argument
-        let { rule, arg } = this.#parse(ruleString)
+        let { rule, arg } = this.parse(ruleString)
 
         // check if the rule exists in the available rules
         if (!Object.prototype.hasOwnProperty.call(this.availableRules, rule)) {
@@ -197,11 +182,11 @@ class Clockwork {
         if (this.availableRules[rule](value, arg)) return
 
         // add error to #errorsBag in case of failure
-        let errorMessage = this.#getErrorMessage(dataKey, rule, arg)
-        this.#addError(dataKey, rule, errorMessage)
+        let errorMessage = this.getErrorMessage(dataKey, rule, arg)
+        this.addError(dataKey, rule, errorMessage)
     }
 
-    #getErrorMessage(dataKey, rule, arg = null) {
+    this.getErrorMessage = (dataKey, rule, arg = null) => {
         let message
         let key = dataKey + '.' + rule
 
@@ -225,14 +210,21 @@ class Clockwork {
         return message.replace('{param}', arg)
     }
 
-    #addError(dataKey, rule, errorMessage) {
+    this.addError = (dataKey, rule, errorMessage) => {
         let key = dataKey + '.' + rule
 
-        this.#errorsBag.push({
+        this.errorsBag.push({
             key: key,
             dataKey: dataKey,
             message: errorMessage,
         })
+    }
+
+    this.reset = () => {
+        this.data = {}
+        this.rules = {}
+        this.errorsBag = []
+        this.customErrorMessages = {}
     }
 }
 

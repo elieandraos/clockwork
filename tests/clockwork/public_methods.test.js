@@ -87,3 +87,13 @@ test('it fails to validate if data are not set', () => {
 
     expect(withEmptyData).toThrow(Error)
 })
+
+test('it resets', () => {
+    let data = { foo: 'bar', age: 35 }
+    clockwork.setData(data).setRules({ foo: 'required' }).reset()
+
+    expect(clockwork.getData()).toMatchObject({})
+    expect(clockwork.getRules()).toMatchObject({})
+    expect(clockwork.getErrorBag()).toMatchObject({})
+    expect(clockwork.getCustomErrorMessages()).toMatchObject({})
+})

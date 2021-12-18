@@ -1,4 +1,11 @@
 # Changelog
+## v1.0.5
+### Changed
+- :recycle: refactor class to functional object
+### Added
+- :sparkles: reset() method
+- :see_no_evil: `.npmignore` file
+
 ## v1.0.4
 ### Changed
 - :wheelchair: ditch private class properties

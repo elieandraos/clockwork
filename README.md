@@ -6,7 +6,7 @@
 
 - :technologist: Minimal model-based javascript validation library
 - :bricks: Can be used with any javascript framework
-- :green_heart: Offers 25+ validation rules out of out the box
+- :green_heart: Offers built-in 25+ validation rules
 - :children_crossing: easy to use api, inspired from the Laravel validation system
 - :test_tube: High test coverage
 

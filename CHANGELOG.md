@@ -4,7 +4,8 @@
 - :recycle: refactor class to functional object
 - :bulb: full documentation
 ### Added
-- :sparkles: reset() method
+- :sparkles: `reset()` method
+- :sparkles: `multiple_of` rule
 
 ## v1.0.4
 ### Changed

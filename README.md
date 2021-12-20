@@ -44,7 +44,7 @@ if (validator.fails() ) {
 ```
 
 # Complex model validation
-- it supports "dot annotations" for nested object properties validation
+- "dot annotations" for nested object properties validation
 - multiple rules are separated with a pipe
 - rules that accept an additional paramter are suffixed with a semi column followed by the parameter
 - rule paramter can be static or from the data object itself
@@ -62,14 +62,14 @@ validator
     .setRules({
         'person.name': 'required | alpha',
         'person.age': 'required | integer | min:18',
-        'person.email': 'required | email | ends_with:domain'
+        'person.email': 'required | email | ends_with:domain' // here domain will ve evaluated as 'leadwithprimitive.com'
     })
 ```
 
 # Custom error messages
-- Custom error message can be defined with the `setCustomErrorMesssages()` method.
-- Its accepts an object of key/value pairs
+Custom error message can be defined with `setCustomErrorMesssages()` method. This method accepts an object of key/value pairs:
 - The key is the data property concatenated with the rule name
+- The value is the custom message
 
 ```javascript
 validator

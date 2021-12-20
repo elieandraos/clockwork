@@ -184,3 +184,7 @@ export const yesterday = (value) => {
 export const date_format = (value, arg) => {
     return dayjs(value, arg, true).isValid()
 }
+
+export const multiple_of = (value, arg) => {
+    return value % arg === 0
+}

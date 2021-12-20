@@ -1,5 +1,6 @@
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/elieandraos/clockwork/CI%20build%20&%20tests)
 [![CodeFactor](https://www.codefactor.io/repository/github/elieandraos/clockwork/badge)](https://www.codefactor.io/repository/github/elieandraos/clockwork)
+[![Coverage Status](https://coveralls.io/repos/github/elieandraos/clockwork/badge.svg?branch=master)](https://coveralls.io/github/elieandraos/clockwork?branch=master)
 ![downloads](https://img.shields.io/npm/dt/@elieandraos/clockwork)
 ![NPM](https://img.shields.io/npm/l/@elieandraos/clockwork)
 

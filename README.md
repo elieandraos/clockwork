@@ -116,6 +116,7 @@ validator
 | **leap_year**               | The field under validation must be a leap year date                                                                         |
 | **max**:_value_             | The field under validation must be less than or equal to a maximum value. Accepted values are string, numerics and array    |
 | **matches_regex**:_pattern_ | The field under validation must not match the given regular expression                                                      |
+| **multiple_of**:_number_    | The field under validation must a be multiple of the given number                                                           |
 | **min**:_value_             | The field under validation must be greater than or equal to a minimum value. Accepted values are string, numerics and array |
 | **not_in**:_value_          | The field under validation must not be included in the given value. Accepted values are comma seperated string or array     |
 | **numberic**                | The field under validation must be a numeric (integer or decimal)                                                           |

@@ -5,9 +5,9 @@
 ![NPM](https://img.shields.io/npm/l/@elieandraos/clockwork)
 
 - :technologist: Minimal model-based javascript validation library
-- :bricks: Can be used natively or as part of any javascript framework
+- :bricks: Can be used with any javascript framework
 - :green_heart: Offers 25+ validation rules out of out the box
-- :alien: Its api is inspired from the Laravel validation system
+- :children_crossing: easy to use api, inspired from the Laravel validation system
 - :test_tube: High test coverage
 
 # Installation

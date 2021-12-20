@@ -1,3 +1,8 @@
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/elieandraos/clockwork/CI%20build%20&%20tests)
+[![CodeFactor](https://www.codefactor.io/repository/github/elieandraos/clockwork/badge)](https://www.codefactor.io/repository/github/elieandraos/clockwork)
+![downloads](https://img.shields.io/npm/dt/@elieandraos/clockwork)
+![NPM](https://img.shields.io/npm/l/@elieandraos/clockwork)
+
 - :technologist: Minimal model-based javascript validation library
 - :bricks: Can be used natively or as part of any javascript framework
 - :green_heart: Offers 25+ validation rules out of out the box
@@ -89,39 +94,39 @@ validator
 
 # Built-in rules
 
-| Rules                     | Description                                                                                                                   |
-|---------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| **after**:date            | _The field under validation must be a value after a given date_                                                               |
-| **after_or_equal**:date   | _The field under validation must be a value after or equal a given date_                                                      |
-| **alpha**                 | _The field under validation must be entirely alphabetic characters_                                                           |
-| **alpha_dash**            | _The field under validation may have alpha characters, as well as dashes and underscores_                                     |
-| **alpha_numeric**         | _The field under validation may have alpha-numeric characters_                                                                |
-| **array**                 | _The field under validation must be an array_                                                                                 |
-| **before**:date           | _The field under validation must be a value before a given date_                                                              |
-| **before_or_equal**:date  | _The field under validation must be a value before or equal a given date_                                                     |
-| **boolean**               | _The field under validation must be able to be cast as a boolean_                                                             |
-| **date**                  | _The field under validation must be a valid javascript date_                                                                  |
-| **date_format**:string    | _The field under validation must match the given format_                                                                      |
-| **different**:value       | _The field under validation must not match the given value_                                                                   |
-| **email**                 | _The field under validation must be formatted as an email address_                                                            |
-| **ends_with**:string      | _The field under validation must end with the given value_                                                                    |
-| **is_in**:value           | _The field under validation must be included in the given value. Accepted values are comma seperated string or array_         |
-| **integer**               | _The field under validation must be an integer_                                                                               |
-| **json**                  | _The field under validation must be a valid JSON object_                                                                      |
-| **leap_year**             | _The field under validation must be a leap year date_                                                                         |
-| **max**:value             | _The field under validation must be less than or equal to a maximum value. Accepted values are string, numerics and array_    |
-| **matches_regex**:pattern | _The field under validation must not match the given regular expression_                                                      |
-| **min**:value             | _The field under validation must be greater than or equal to a minimum value. Accepted values are string, numerics and array_ |
-| **not_in**:value          | _The field under validation must not be included in the given value. Accepted values are comma seperated string or array_     |
-| **numberic**              | _The field under validation must be a numeric (integer or decimal)_                                                           |
-| **required**              | _The field under validation must be present in the input data and not empty_                                                  |
-| **same**:value            | _The field under validation must match the given value_                                                                       |
-| **size**:value            | _The field under validation must have a length matching the given value. Accepted value are string and array_                 |
-| **sometimes**             | _Validate the field only if present_                                                                                          |
-| **starts_with**:string    | _The field under validation must end with the given value_                                                                    |
-| **string**                | _The field under validation must be a string_                                                                                 |
-| **today**                 | _The field under validation must be a date equal to today_                                                                    |
-| **tomorrow**              | _The field under validation must be a date equal to tomorrow_                                                                 |
-| **url**                   | _The field under validation must be a valid url_                                                                              |
-| **uuid**                  | _The field under validation must be a valid RFC 4122 (version 1, 3, 4, or 5) universally unique identifier (UUID)_            |
-| **yesterday**             | _The field under validation must be a date equal to yesterday_                                                                |
+| Rules                       | Description                                                                                                                 |
+|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| **after**:_date_            | The field under validation must be a value after a given date                                                               |
+| **after_or_equal**:_date_   | The field under validation must be a value after or equal a given date                                                      |
+| **alpha**                   | The field under validation must be entirely alphabetic characters                                                           |
+| **alpha_dash**              | The field under validation may have alpha characters, as well as dashes and underscores                                     |
+| **alpha_numeric**           | The field under validation may have alpha-numeric characters                                                                |
+| **array**                   | The field under validation must be an array                                                                                 |
+| **before**:_date_           | The field under validation must be a value before a given date                                                              |
+| **before_or_equal**:_date_  | The field under validation must be a value before or equal a given date                                                     |
+| **boolean**                 | The field under validation must be able to be cast as a boolean                                                             |
+| **date**                    | The field under validation must be a valid javascript date                                                                  |
+| **date_format**:_string_    | The field under validation must match the given format                                                                      |
+| **different**:_value_       | The field under validation must not match the given value                                                                   |
+| **email**                   | The field under validation must be formatted as an email address                                                            |
+| **ends_with**:_string_      | The field under validation must end with the given value                                                                    |
+| **is_in**:_value_           | The field under validation must be included in the given value. Accepted values are comma seperated string or array         |
+| **integer**                 | The field under validation must be an integer                                                                               |
+| **json**                    | The field under validation must be a valid JSON object                                                                      |
+| **leap_year**               | The field under validation must be a leap year date                                                                         |
+| **max**:_value_             | The field under validation must be less than or equal to a maximum value. Accepted values are string, numerics and array    |
+| **matches_regex**:_pattern_ | The field under validation must not match the given regular expression                                                      |
+| **min**:_value_             | The field under validation must be greater than or equal to a minimum value. Accepted values are string, numerics and array |
+| **not_in**:_value_          | The field under validation must not be included in the given value. Accepted values are comma seperated string or array     |
+| **numberic**                | The field under validation must be a numeric (integer or decimal)                                                           |
+| **required**                | The field under validation must be present in the input data and not empty                                                  |
+| **same**:_value_            | The field under validation must match the given value                                                                       |
+| **size**:_value_            | The field under validation must have a length matching the given value. Accepted value are string and array                 |
+| **sometimes**               | The field will only ve validated if present                                                                                 |
+| **starts_with**:_string_    | The field under validation must end with the given value                                                                    |
+| **string**                  | The field under validation must be a string                                                                                 |
+| **today**                   | The field under validation must be a date equal to today                                                                    |
+| **tomorrow**                | The field under validation must be a date equal to tomorrow                                                                 |
+| **url**                     | The field under validation must be a valid url                                                                              |
+| **uuid**                    | The field under validation must be a valid RFC 4122 (version 1, 3, 4, or 5) universally unique identifier (UUID)            |
+| **yesterday**               | The field under validation must be a date equal to yesterday                                                                |

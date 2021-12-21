@@ -1,4 +1,8 @@
 # Changelog
+## v1.0.9
+### Changed
+- :zap: load `dayjs` in commonJs instead of module
+
 ## v1.0.8
 ### Changed
 - :zap: load `dot-prop` in commonJs instead of module

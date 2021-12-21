@@ -1,7 +1,7 @@
 {
     "name": "@elieandraos/clockwork",
     "version": "1.0.5",
-    "description": "A wide variety of convenient validation rules that you may apply to your data",
+    "description": "Minimal model-based javascript validation library",
     "source": "src/clockwork.js",
     "main": "dist/index.js",
     "scripts": {

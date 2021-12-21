@@ -33,18 +33,18 @@
     },
     "homepage": "https://github.com/elieandraos/clockwork#readme",
     "devDependencies": {
+        "@babel/preset-env": "^7.16.5",
+        "@elieandraos/cli-tools": "^0.0.5",
         "esbuild": "^0.14.5",
         "esbuild-node-externals": "^1.4.1",
         "eslint": "^8.4.1",
         "jest": "^27.0.6",
-        "prettier": "^2.5.1"
+        "prettier": "^2.5.1",
+        "chalk": "^4.1.2",
+        "esm": "^3.2.25"
     },
     "dependencies": {
-        "@babel/preset-env": "^7.16.5",
-        "@elieandraos/cli-tools": "^0.0.5",
-        "chalk": "^4.1.2",
         "dayjs": "^1.10.6",
-        "dot-prop": "^6.0.1",
-        "esm": "^3.2.25"
+        "dot-prop": "^6.0.1"
     }
 }

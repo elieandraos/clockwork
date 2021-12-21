@@ -1,12 +1,12 @@
-import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
-import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
-import isLeapYear from 'dayjs/plugin/isLeapYear'
-import isToday from 'dayjs/plugin/isToday'
-import isTomorrow from 'dayjs/plugin/isTomorrow'
-import isYesterday from 'dayjs/plugin/isYesterday'
-import customParseFormat from 'dayjs/plugin/customParseFormat'
-
 const dayjs = require('dayjs')
+const isSameOrAfter = require('dayjs/plugin/isSameOrAfter')
+const isSameOrBefore = require('dayjs/plugin/isSameOrBefore')
+const isLeapYear = require('dayjs/plugin/isLeapYear')
+const isToday = require('dayjs/plugin/isToday')
+const isTomorrow = require('dayjs/plugin/isTomorrow')
+const isYesterday = require('dayjs/plugin/isYesterday')
+const customParseFormat = require('dayjs/plugin/customParseFormat')
+
 dayjs.extend(isSameOrAfter)
 dayjs.extend(isSameOrBefore)
 dayjs.extend(isLeapYear)

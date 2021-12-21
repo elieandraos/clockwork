@@ -1,8 +1,12 @@
 # Changelog
+## v1.0.8
+### Changed
+- :zap: load `dot-prop` in commonJs instead of module
+
 ## v1.0.7
 ### Changed
 - :bug: fix `cli-tools` import path
-- :package: bump dependencies to latestg
+- :package: bump dependencies to latest
 
 ## v1.0.6
 ### Added

@@ -1,4 +1,9 @@
 # Changelog
+## v1.0.7
+### Changed
+- :bug: fix `cli-tools` import path
+- :package: bump dependencies to latestg
+
 ## v1.0.6
 ### Added
 - :hammer: set esbuild platform to `browser`

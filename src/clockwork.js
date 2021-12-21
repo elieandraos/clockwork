@@ -1,6 +1,7 @@
-import * as Model from 'dot-prop'
 import * as availableRules from './rules'
 import { is_object, is_empty_object, defaultErrorMessages } from './utils'
+
+const Model = require('dot-prop')
 
 function Clockwork() {
     this.data = {}

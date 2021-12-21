@@ -7,7 +7,7 @@ esbuild
         bundle: true,
         minify: true,
         logLevel: 'info',
-        platform: 'node',
+        platform: 'browser',
         outfile: 'dist/index.js',
         plugins: [
             nodeExternalsPlugin({

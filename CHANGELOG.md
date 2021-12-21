@@ -1,4 +1,11 @@
 # Changelog
+## v1.0.6
+### Added
+- :hammer: set esbuild platform to `browser`
+### Changed
+- :pencil2: update package description
+- :zap: move dependencies to dev
+
 ## v1.0.5
 ### Changed
 - :recycle: refactor class to functional object

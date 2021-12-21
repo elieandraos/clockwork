@@ -1,13 +1,14 @@
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/elieandraos/clockwork/CI%20build%20&%20tests)
 [![CodeFactor](https://www.codefactor.io/repository/github/elieandraos/clockwork/badge)](https://www.codefactor.io/repository/github/elieandraos/clockwork)
 [![Coverage Status](https://coveralls.io/repos/github/elieandraos/clockwork/badge.svg?branch=master)](https://coveralls.io/github/elieandraos/clockwork?branch=master)
+![npms.io (quality)](https://img.shields.io/npms-io/quality-score/@elieandraos/clockwork)
 ![downloads](https://img.shields.io/npm/dt/@elieandraos/clockwork)
 ![NPM](https://img.shields.io/npm/l/@elieandraos/clockwork)
 
 - :technologist: Minimal model-based javascript validation library
 - :bricks: Can be used with any javascript framework
-- :green_heart: Offers built-in 25+ validation rules
-- :children_crossing: easy to use api, inspired from the Laravel validation system
+- :green_heart: Offers 30+ built-in validation rules
+- :children_crossing: Easy to use api, inspired from the Laravel validation syntax
 - :test_tube: High test coverage
 
 # Installation
@@ -27,8 +28,8 @@ Clockwork validates a given data object against a given rules object
 // define the data and rules objects
 validator
    .setData({
-      name: null,
-      email: null
+      name: '',
+      email: ''
    })
    .setRules({
         name: 'required',

@@ -7,6 +7,10 @@
     "module": "dist/index.module.js",
     "umd:main": "dist/index.umd.js",
     "unpkg": "dist/index.modern.js",
+    "exports": {
+        "require": "./dist/index.cjs",
+        "default": "./dist/index.modern.js"
+    },
     "scripts": {
         "info": "npm list -depth 0 && npm list -g --depth=0 && npm outdated || exit 0",
         "test": "jest --verbose --coverage",

@@ -1,4 +1,8 @@
 # Changelog
+## v1.0.12
+### Changed
+- :green_heart: build with `microbundle`
+
 ## v1.0.11
 ### Changed
 - :triangular_flag_on_post: use `date-fns` for date functions

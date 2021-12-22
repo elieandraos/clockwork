@@ -1,5 +1,5 @@
 # Changelog
-## v1.0.12
+## v1.0.13
 ### Removed
 - :fire: remove `esbuild` and its plugins
 - :fire: remove build script

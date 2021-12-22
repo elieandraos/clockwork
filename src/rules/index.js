@@ -1,19 +1,14 @@
-const dayjs = require('dayjs')
-const isSameOrAfter = require('dayjs/plugin/isSameOrAfter')
-const isSameOrBefore = require('dayjs/plugin/isSameOrBefore')
-const isLeapYear = require('dayjs/plugin/isLeapYear')
-const isToday = require('dayjs/plugin/isToday')
-const isTomorrow = require('dayjs/plugin/isTomorrow')
-const isYesterday = require('dayjs/plugin/isYesterday')
-const customParseFormat = require('dayjs/plugin/customParseFormat')
-
-dayjs.extend(isSameOrAfter)
-dayjs.extend(isSameOrBefore)
-dayjs.extend(isLeapYear)
-dayjs.extend(isToday)
-dayjs.extend(isTomorrow)
-dayjs.extend(isYesterday)
-dayjs.extend(customParseFormat)
+import {
+    isValid,
+    isAfter,
+    isBefore,
+    isEqual,
+    isLeapYear,
+    isToday,
+    isYesterday,
+    isTomorrow,
+    isMatch,
+} from 'date-fns'
 
 export const required = (value) => {
     if (Array.isArray(value) && value.length === 0) return false
@@ -146,43 +141,63 @@ export const json = (value) => {
 }
 
 export const date = (value) => {
-    return dayjs(value).isValid()
+    if (!value) return false
+
+    return isValid(new Date(value))
 }
 
 export const after = (value, arg = null) => {
-    return dayjs(value).isAfter(arg)
+    if (!date(value) || !date(arg)) return false
+
+    return isAfter(new Date(value), new Date(arg))
 }
 
 export const before = (value, arg = null) => {
-    return dayjs(value).isBefore(arg)
+    if (!date(value) || !date(arg)) return false
+
+    return isBefore(new Date(value), new Date(arg))
 }
 
 export const after_or_equal = (value, arg = null) => {
-    return dayjs(value).isSameOrAfter(arg)
+    if (!date(value) || !date(arg)) return false
+
+    return after(value, arg) || isEqual(new Date(value), new Date(arg))
 }
 
 export const before_or_equal = (value, arg = null) => {
-    return dayjs(value).isSameOrBefore(arg)
+    if (!date(value) || !date(arg)) return false
+
+    return before(value, arg) || isEqual(new Date(value), new Date(arg))
 }
 
 export const leap_year = (value) => {
-    return dayjs(value).isLeapYear()
+    if (!date(value)) return false
+
+    return isLeapYear(new Date(value))
 }
 
 export const today = (value) => {
-    return dayjs(value).isToday()
+    if (!date(value)) return false
+
+    return isToday(new Date(value))
 }
 
 export const tomorrow = (value) => {
-    return dayjs(value).isTomorrow()
+    if (!date(value)) return false
+
+    return isTomorrow(new Date(value))
 }
 
 export const yesterday = (value) => {
-    return dayjs(value).isYesterday()
+    if (!date(value)) return false
+
+    return isYesterday(new Date(value))
 }
 
 export const date_format = (value, arg) => {
-    return dayjs(value, arg, true).isValid()
+    if (!date(value)) return false
+
+    return isMatch(value, arg)
 }
 
 export const multiple_of = (value, arg) => {

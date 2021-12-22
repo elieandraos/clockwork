@@ -1,8 +1,8 @@
 import { date_format } from '../../src/rules'
 
 test('passes with valid date format', () => {
-    expect(date_format('1979-10-22', 'YYYY-MM-DD')).toBe(true)
-    expect(date_format('1979-10-22', 'YYYY/MM/DD')).toBe(false)
+    expect(date_format('1979-10-22', 'yyyy-mm-dd')).toBe(true)
+    expect(date_format('1979-10-22', 'yyyy/mm/dd')).toBe(false)
 })
 
 test('fails with null', () => {

@@ -1,4 +1,8 @@
 # Changelog
+## v1.0.14
+### Changed
+- :green_heart: update build targets
+
 ## v1.0.13
 ### Removed
 - :fire: remove `esbuild` and its plugins

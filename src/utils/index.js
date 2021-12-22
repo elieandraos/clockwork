@@ -33,6 +33,7 @@ export const defaultErrorMessages = {
     matches_regex: 'This field must match the regex "{param}"',
     max: 'This field must not be greater than "{param}"',
     min: 'This field must not be less than "{param}"',
+    multiple_of: 'This field must be a multiple of "{param}"',
     not_in: 'This field must not be one of "{param}"',
     numeric: 'This field must be numeric',
     required: 'This field is required',

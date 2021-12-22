@@ -1,4 +1,11 @@
 # Changelog
+## v1.0.11
+### Changed
+- :triangular_flag_on_post: use `date-fns` for date functions
+- :speech_balloon: add `mutliple_of` default error message
+### Removed
+- :fire: remove `dayjs` dependency
+
 ## v1.0.10
 ### Changed
 - :zap: load `dayjs` plugins in commonJs instead of module

@@ -1,5 +1,10 @@
 # Changelog
 ## v1.0.12
+### Removed
+- :fire: remove `esbuild` and its plugins
+- :fire: remove build script
+ 
+## v1.0.12
 ### Changed
 - :green_heart: build with `microbundle`
 

@@ -4,12 +4,15 @@
     "description": "Minimal model-based javascript validation library",
     "source": "src/clockwork.js",
     "main": "dist/index.js",
+    "module": "dist/index.module.js",
+    "umd:main": "dist/index.umd.js",
+    "unpkg": "dist/index.modern.js",
     "scripts": {
         "info": "npm list -depth 0 && npm list -g --depth=0 && npm outdated || exit 0",
         "test": "jest --verbose --coverage",
         "format": "npx prettier --write .",
         "lint": "npx eslint src",
-        "build": "rm -rf dist && node scripts/build.js",
+        "build": "rm -rf dist && microbundle",
         "release": "node -r esm scripts/release.js"
     },
     "repository": {
@@ -41,6 +44,7 @@
         "eslint": "^8.4.1",
         "esm": "^3.2.25",
         "jest": "^27.0.6",
+        "microbundle": "^0.14.2",
         "prettier": "^2.5.1"
     },
     "dependencies": {

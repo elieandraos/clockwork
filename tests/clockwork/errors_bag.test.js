@@ -4,17 +4,27 @@ const clockwork = new Clockwork()
 
 test('it sets error bag for a failed data validation', () => {
     let rules = {
-        name: 'required | string | starts_with:foo',
+        age: 'min:18',
+        name: 'string | starts_with:foo',
     }
 
     let data = {
+        age: 10,
         name: 12,
     }
 
     clockwork.setRules(rules).setData(data).passes()
 
+    expect(clockwork.hasErrors()).toBe(true)
     expect(clockwork.hasErrors('name')).toBe(true)
+
+    expect(clockwork.getErrors().length).toBe(3)
     expect(clockwork.getErrors('name').length).toBe(2)
+
+    expect(clockwork.getFirstError()).toBe(
+        clockwork.defaultErrorMessages['min'].replace('{param}', '18')
+    )
+
     expect(clockwork.getFirstError('name')).toBe(
         clockwork.defaultErrorMessages['string']
     )

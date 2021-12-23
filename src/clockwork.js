@@ -64,18 +64,20 @@ function Clockwork() {
         return this.errorsBag
     }
 
-    this.getErrors = (key) => {
-        return this.getErrorBag()
-            .filter(({ dataKey }) => dataKey === key)
-            .map((item) => item.message)
+    this.getErrors = (key = null) => {
+        return key
+            ? this.getErrorBag()
+                  .filter(({ dataKey }) => dataKey === key)
+                  .map((item) => item.message)
+            : this.getErrorBag().map((item) => item.message)
     }
 
-    this.hasErrors = (dataKey) => {
-        return !!this.getErrors(dataKey).length
+    this.hasErrors = (key = null) => {
+        return !!this.getErrors(key).length
     }
 
-    this.getFirstError = (dataKey) => {
-        return this.hasErrors(dataKey) ? this.getErrors(dataKey)[0] : null
+    this.getFirstError = (key = null) => {
+        return this.hasErrors(key) ? this.getErrors(key)[0] : null
     }
 
     this.extend = (name, closure, message = 'Invalid') => {

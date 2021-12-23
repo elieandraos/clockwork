@@ -70,6 +70,27 @@ validator
     })
 ```
 
+# Accessing the error bag
+Clockwork provides 4 helper methods to access any validation error:
+```javascript
+validator
+   .setData({ name: null, age: 10 })
+   .setRules({ name: 'required', age: 'min:12' })
+
+if(validator.fails()) {
+    validator.hasErrors() // check if there is any error
+    validator.hasErrors('name') // check if there is any error for the 'name' field
+    
+    validator.getErrors() // returns all the error messages
+    validator.getErrors('name') // returns all the error messages of the 'name' field
+
+    validator.getFirstError() // returns the first error message found
+    validator.getFirstError('name') // returns the first error message found of the 'name' field
+    
+    validator.getErrorBag() // returns the error bag object as it is
+}
+```
+
 # Custom error messages
 Custom error message can be defined with `setCustomErrorMesssages()` method. This method accepts an object of key/value pairs:
 - The key is the data property concatenated with the rule name

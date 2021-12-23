@@ -117,7 +117,7 @@ test('it throws an error if the closure is not a function', () => {
     expect(booleanClosure).toThrow(Error)
 
     let noReturnClosure = () => {
-        clockwork.extend('greater_than', () => { })
+        clockwork.extend('greater_than', () => {})
     }
     expect(noReturnClosure).toThrow(Error)
 })

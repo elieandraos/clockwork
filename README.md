@@ -83,9 +83,10 @@ validator
 ```
 
 # Custom rules
-Custom rules can be created with the `extend()` method. This method accepts two parameters: 
-- The first, is the name of the rule name. 
-- The second, is the closure that should be executed when calling the rule
+Custom rules can be created with the `extend()` method. This method accepts three parameters: 
+- The first, is the name of the rule name
+- The second, is the closure (should return a boolean) that should be executed when calling the rule
+- The third (optional), is the rule's error message (default: 'Invalid')
 
 ```javascript
 validator
@@ -93,7 +94,7 @@ validator
    .setRules({ age: 'greater_than:18' })
    .extend( 'greated_than', (value, arg) => {
       return value > arg
-   })
+   }, 'Age must be greater than {param}')
 ```
 
 # Built-in rules

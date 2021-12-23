@@ -1,4 +1,8 @@
 # Changelog
+## v1.0.15
+### Changed
+- :zap: add default rule error message with extend method
+
 ## v1.0.14
 ### Changed
 - :green_heart: update build targets

@@ -78,8 +78,8 @@ validator
    .setRules({ name: 'required', age: 'min:12' })
 
 if(validator.fails()) {
-    validator.hasErrors() // check if there is any error
-    validator.hasErrors('name') // check if there is any error for the 'name' field
+    validator.hasErrors() // checks if there is any error
+    validator.hasErrors('name') // checks if there is any error for the 'name' field
     
     validator.getErrors() // returns all the error messages
     validator.getErrors('name') // returns all the error messages of the 'name' field

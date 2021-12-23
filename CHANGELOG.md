@@ -2,6 +2,7 @@
 ## v1.0.15
 ### Changed
 - :zap: add default rule error message with extend method
+- :building_construction: improve error bag methods
 
 ## v1.0.14
 ### Changed

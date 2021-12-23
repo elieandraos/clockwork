@@ -1,6 +1,6 @@
 {
     "name": "@elieandraos/clockwork",
-    "version": "1.0.14",
+    "version": "1.0.15",
     "description": "Minimal model-based javascript validation library",
     "source": "src/clockwork.js",
     "main": "dist/index.js",

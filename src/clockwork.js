@@ -78,10 +78,10 @@ function Clockwork() {
         return this.hasErrors(dataKey) ? this.getErrors(dataKey)[0] : null
     }
 
-    this.extend = (name, closure) => {
+    this.extend = (name, closure, message = 'Invalid') => {
         if (!name || !closure) {
             throw new Error(
-                'extend() requires two arguments: name string and callback function'
+                'extend() requires three arguments: name string, callback function and error message string'
             )
         }
 
@@ -104,6 +104,7 @@ function Clockwork() {
             )
 
         this.availableRules[name] = closure
+        this.defaultErrorMessages[name] = message
 
         return this
     }
@@ -191,23 +192,13 @@ function Clockwork() {
         let message
         let key = dataKey + '.' + rule
 
-        if (
-            Object.prototype.hasOwnProperty.call(this.customErrorMessages, key)
-        ) {
-            message = this.customErrorMessages[key]
-        } else {
-            if (
-                Object.prototype.hasOwnProperty.call(
-                    this.defaultErrorMessages,
-                    rule
-                )
-            )
-                message = this.defaultErrorMessages[rule]
-            else
-                throw new Error(
-                    `Set a customer error message for the rule ${rule}`
-                )
-        }
+        message = Object.prototype.hasOwnProperty.call(
+            this.customErrorMessages,
+            key
+        )
+            ? this.customErrorMessages[key]
+            : this.defaultErrorMessages[rule]
+
         return message.replace('{param}', arg)
     }
 

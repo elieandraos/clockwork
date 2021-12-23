@@ -14,12 +14,13 @@ test('it can validate a custom rule', () => {
     clockwork
         .setRules(rules)
         .setData(data)
-        .setCustomErrorMessages({
-            'age.greater_than_ten': 'age should be greater than 10!',
-        })
-        .extend('greater_than_ten', (value) => {
-            return value > 10
-        })
+        .extend(
+            'greater_than_ten',
+            (value) => {
+                return value > 10
+            },
+            'age should be greater than 10!'
+        )
 
     expect(clockwork.passes()).toBe(false)
     expect(clockwork.getFirstError('age')).toBe(
@@ -31,7 +32,7 @@ test('it can validate a custom rule', () => {
     expect(clockwork.hasErrors('age')).toBe(false)
 })
 
-test('it can validate a custom rule', () => {
+test('it can validate a custom rule with argument', () => {
     let rules = {
         age: 'required | greater_than:8',
     }
@@ -43,12 +44,13 @@ test('it can validate a custom rule', () => {
     clockwork
         .setRules(rules)
         .setData(data)
-        .setCustomErrorMessages({
-            'age.greater_than': 'age should be greater than {param}!',
-        })
-        .extend('greater_than', (value, arg) => {
-            return value > arg
-        })
+        .extend(
+            'greater_than',
+            (value, arg) => {
+                return value > arg
+            },
+            'age should be greater than {param}!'
+        )
 
     expect(clockwork.passes()).toBe(false)
     expect(clockwork.getFirstError('age')).toBe('age should be greater than 8!')
@@ -58,7 +60,7 @@ test('it can validate a custom rule', () => {
     expect(clockwork.hasErrors('age')).toBe(false)
 })
 
-test('it throws an error if the name and closure arguments are not provided', () => {
+test('it throws an error if the name, closure or message argument is not provided', () => {
     let withoutName = () => {
         clockwork.extend(null, null)
     }
@@ -88,7 +90,9 @@ test('it throws an error if the closure is not a function', () => {
     expect(undefinedClosure).toThrow(Error)
 
     let arrayClosure = () => {
+        let a = { foo: true }
         clockwork.extend('greater_than', [])
+        clockwork.extend('greater_than', a)
     }
     expect(arrayClosure).toThrow(Error)
 
@@ -111,4 +115,9 @@ test('it throws an error if the closure is not a function', () => {
         clockwork.extend('greater_than', true)
     }
     expect(booleanClosure).toThrow(Error)
+
+    let noReturnClosure = () => {
+        clockwork.extend('greater_than', () => { })
+    }
+    expect(noReturnClosure).toThrow(Error)
 })

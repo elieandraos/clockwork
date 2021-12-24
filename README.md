@@ -66,7 +66,7 @@ validator
     .setRules({
         'person.name': 'required | alpha',
         'person.age': 'required | integer | min:18',
-        'person.email': 'required | email | ends_with:domain' // here domain will ve evaluated as 'leadwithprimitive.com'
+        'person.email': 'required | email | ends_with:domain' // here domain will be evaluated as 'leadwithprimitive.com'
     })
 ```
 

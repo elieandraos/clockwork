@@ -4,7 +4,6 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/elieandraos/clockwork/badge)](https://www.codefactor.io/repository/github/elieandraos/clockwork)
 ![npms.io (quality)](https://img.shields.io/npms-io/quality-score/@elieandraos/clockwork)
 ![downloads](https://img.shields.io/npm/dt/@elieandraos/clockwork)
-![NPM](https://img.shields.io/npm/l/@elieandraos/clockwork)
 
 - :technologist: Minimal model-based javascript validation library
 - :bricks: Can be used with any javascript framework

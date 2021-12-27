@@ -29,6 +29,7 @@ jobs:
             - run: npm test
 
             - name: Coveralls
+              if: github.repository == 'elieandraos/clockwork' && matrix.node-version == '14.x'
               uses: coverallsapp/github-action@master
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}

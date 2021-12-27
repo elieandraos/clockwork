@@ -1,6 +1,6 @@
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/elieandraos/clockwork/CI%20build%20&%20tests)
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@elieandraos/clockwork)
-[![Coverage Status](https://coveralls.io/repos/github/elieandraos/clockwork/badge.svg?branch=master)](https://coveralls.io/github/elieandraos/clockwork?branch=master)
+<a href='https://coveralls.io/github/elieandraos/clockwork?branch=master'><img src='https://s3.amazonaws.com/assets.coveralls.io/badges/coveralls_99.svg' alt='Coverage Status' /></a>
 [![CodeFactor](https://www.codefactor.io/repository/github/elieandraos/clockwork/badge)](https://www.codefactor.io/repository/github/elieandraos/clockwork)
 ![npms.io (quality)](https://img.shields.io/npms-io/quality-score/@elieandraos/clockwork)
 ![downloads](https://img.shields.io/npm/dt/@elieandraos/clockwork)

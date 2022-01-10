@@ -107,7 +107,7 @@ For rules with parameters, add `{param}` to into the error message and it will b
 validator
    .setData({ age: null })
    .setRules({ age: 'min:18' })
-    .setCustomErrorMessages({ 'age.min' : 'You must be at least {param} years old' }) // returns: You must be at least 18 years old
+   .setCustomErrorMessages({ 'age.min' : 'You must be at least {param} years old' }) // returns: You must be at least 18 years old
 ```
 
 # Custom rules

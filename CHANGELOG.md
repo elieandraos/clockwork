@@ -1,5 +1,5 @@
 # Changelog
-## v1.0.16
+## v1.0.17
 ### Changed
 - :recycle: import `dot-prop` instead of require
 

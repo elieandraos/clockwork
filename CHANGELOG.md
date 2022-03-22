@@ -3,6 +3,7 @@
 ### Changed
 - :green_heart: bundle with esbuild
 - :fire: remove microbundle
+- :arrow_up: update dependencies
 
 ## v1.0.15
 ### Changed

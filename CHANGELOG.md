@@ -1,6 +1,10 @@
 # Changelog
 ## v1.0.16
 ### Changed
+- :recycle: import `dot-prop` instead of require
+
+## v1.0.16
+### Changed
 - :green_heart: bundle with esbuild
 - :fire: remove microbundle
 - :arrow_up: update dependencies

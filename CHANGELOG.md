@@ -1,4 +1,8 @@
 # Changelog
+## v1.0.16
+### Changed
+- :green_heart: bundle with esbuild
+- 
 ## v1.0.15
 ### Changed
 - :zap: add default rule error message with extend method

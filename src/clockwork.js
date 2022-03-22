@@ -1,7 +1,6 @@
+import { has , get } from 'dot-prop'
 import * as availableRules from './rules'
 import { is_object, is_empty_object, defaultErrorMessages } from './utils'
-
-const Model = require('dot-prop')
 
 function Clockwork() {
     this.data = {}
@@ -125,8 +124,8 @@ function Clockwork() {
         this.errorsBag = []
 
         for (let [dataKey, rulesString] of Object.entries(this.rules)) {
-            let value = Model.has(this.data, dataKey)
-                ? Model.get(this.data, dataKey)
+            let value = has(this.data, dataKey)
+                ? get(this.data, dataKey)
                 : dataKey
             let rules = this.toArray(rulesString)
 
@@ -167,7 +166,7 @@ function Clockwork() {
             rule = ruleString.split(':')[0].trim()
             arg = ruleString.split(':')[1].trim()
 
-            if (Model.has(this.data, arg)) arg = Model.get(this.data, arg)
+            if (has(this.data, arg)) arg = get(this.data, arg)
         }
 
         return { rule: rule, arg: arg }

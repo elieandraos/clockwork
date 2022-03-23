@@ -24,7 +24,7 @@ esbuild.build({
 })
 
 // CJS module (CommonJS)
-// Meant for "import" statements in (node)
+// Meant for "require" statements in (node)
 esbuild.build({
     entryPoints: ['src/clockwork.js'],
     outfile: 'dist/index.cjs.js',

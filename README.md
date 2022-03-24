@@ -164,3 +164,7 @@ validator
 | **url**                     | The field under validation must be a valid url                                                                              |
 | **uuid**                    | The field under validation must be a valid RFC 4122 (version 1, 3, 4, or 5) universally unique identifier (UUID)            |
 | **yesterday**               | The field under validation must be a date equal to yesterday                                                                |
+
+
+# Frameworks wrapper
+- Vue: clockwork-vue https://github.com/elieandraos/clockwork-vue

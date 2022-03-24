@@ -1,6 +1,10 @@
 # Changelog
 ## v1.0.17
 ### Changed
+- :bulb: update docs
+
+## v1.0.17
+### Changed
 - :recycle: import `dot-prop` instead of require
 
 ## v1.0.16

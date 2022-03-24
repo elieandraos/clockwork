@@ -1,5 +1,5 @@
 # Changelog
-## v1.0.17
+## v1.0.18
 ### Changed
 - :bulb: update docs
 

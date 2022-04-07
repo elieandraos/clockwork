@@ -1,4 +1,8 @@
 # Changelog
+## v1.0.19
+### Changed
+- :package: update to latest dependencies
+
 ## v1.0.18
 ### Changed
 - :bulb: update docs

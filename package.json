@@ -36,7 +36,7 @@
     "homepage": "https://github.com/elieandraos/clockwork#readme",
     "devDependencies": {
         "@babel/preset-env": "^7.16.5",
-        "@elieandraos/cli-tools": "^0.0.7",
+        "@elieandraos/cli-tools": "*",
         "chalk": "^4.1.2",
         "esbuild": "^0.14.27",
         "esbuild-node-externals": "^1.4.1",

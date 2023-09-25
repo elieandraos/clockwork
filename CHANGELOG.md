@@ -1,4 +1,8 @@
 # Changelog
+## v1.0.20
+### Changed
+- :bug: fix min and max rules with zeros
+
 ## v1.0.19
 ### Changed
 - :package: update to latest dependencies

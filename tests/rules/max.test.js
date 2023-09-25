@@ -1,5 +1,14 @@
 import { max } from '../../src/rules'
 
+test('passes with zeros and valid condition', () => {
+    expect(max(0, 0)).toBe(true)
+})
+
+test('passes with negative values and valid condition', () => {
+    expect(max(-5, -1)).toBe(true)
+    expect(max(-1, -3)).toBe(false)
+})
+
 test('passes with numbers and valid condition', () => {
     expect(max(5, 10)).toBe(true)
     expect(max(12.75, 42.3)).toBe(true)
@@ -31,7 +40,7 @@ test('fails with object', () => {
 })
 
 test('fails with empty string', () => {
-    expect(max('', 1)).toBe(false)
+    expect(max('  ', 1)).toBe(false)
 })
 
 test('fails with null', () => {

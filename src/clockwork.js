@@ -1,4 +1,4 @@
-import { has , get } from 'dot-prop'
+import { has, get } from 'dot-prop'
 import * as availableRules from './rules'
 import { is_object, is_empty_object, defaultErrorMessages } from './utils'
 

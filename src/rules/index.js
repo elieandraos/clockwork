@@ -78,21 +78,19 @@ export const size = (value, arg = null) => {
 }
 
 export const min = (value, arg = null) => {
-    if (!value && !array(value)) {
+    if (value === null || (typeof value === 'undefined' && !array(value)))
         return false
-    }
 
     value = string(value) || array(value) ? value.length : value
-    return parseFloat(value) >= arg
+    return parseFloat(value) >= parseFloat(arg)
 }
 
 export const max = (value, arg = null) => {
-    if (!value && !array(value)) {
+    if (value === null || (typeof value === 'undefined' && !array(value)))
         return false
-    }
 
     value = string(value) || array(value) ? value.length : value
-    return parseFloat(value) <= arg
+    return parseFloat(value) <= parseFloat(arg)
 }
 
 export const same = (value, arg = null) => {

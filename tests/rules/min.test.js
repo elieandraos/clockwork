@@ -1,5 +1,13 @@
 import { min } from '../../src/rules'
 
+test('passes with zeros and valid condition', () => {
+    expect(min(0, 0)).toBe(true)
+})
+
+test('passes with negative values and valid condition', () => {
+    expect(min(0, -1)).toBe(true)
+})
+
 test('passes with numbers and valid condition', () => {
     expect(min(10, 5)).toBe(true)
     expect(min(12.5, 2.3)).toBe(true)

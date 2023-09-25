@@ -1,4 +1,8 @@
 # Changelog
+## v1.0.21
+### Changed
+- :alembic: sync npm and github releases
+
 ## v1.0.20
 ### Changed
 - :bug: fix min and max rules with zeros

@@ -1,4 +1,3 @@
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/elieandraos/clockwork/CI%20build%20&%20tests)
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@elieandraos/clockwork)
 ![Coveralls](https://img.shields.io/coveralls/github/elieandraos/clockwork)
 [![CodeFactor](https://www.codefactor.io/repository/github/elieandraos/clockwork/badge)](https://www.codefactor.io/repository/github/elieandraos/clockwork)
